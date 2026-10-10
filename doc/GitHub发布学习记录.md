@@ -104,8 +104,16 @@ LIBGL_ALWAYS_SOFTWARE=1 bash tools/run.sh --headless
 1. 实测：通过 SSH 执行 `git ls-remote git@github.com:RyanYhy/competition_suanfa.git` 成功，返回无 refs，确认远端为空；无需新的 SSH 配置或用户再次授权。
 2. 修改：README 使用真实仓库地址与可直接复制的快速开始命令，列出模块、输出目录和已知限制；新增 `docs/INSTALL.md`（安装指南）、`docs/USAGE.md`（使用说明）、`docs/DEVELOPMENT.md`（更新与发布），旧安装文档改为索引，避免多份相互冲突的操作说明。
 3. 修改：源码打包清单包含 `docs/`，新导出包含 215 个源码/资源文件，三个完整模型随仓库提交。默认未启用 LFS，不提交源码 ZIP 或原始验证大文件。
-4. 进行中：文档链接、包扫描、文件校验和及 Git 暂存检查，完成后建立独立 Git 工作副本并推送。
+4. 实测：README/三份指南/文档索引/模型说明/来源说明的 33 个本地链接通过，catkin 扫描仍为三个包。暂存 216 个文件（215 个源码/资源加发布清单），无 gitlink、生成数据或 ZIP，完整模型均为普通 blob，最大文件 12,266,095 字节。校验全部发布清单文件的大小/SHA256通过，新增文档和打包器的 Git diff 空白检查、shell 语法及 Python 编译检查通过。
+5. 实测：独立 Git 工作副本位于 `~/community_github_ws/src/smart-community/`，保留原 `suanfa_ws/src` 和原 `jie_ware/.git`。沿用用户现有 Git 作者信息，建立 main 并添加用户指定 SSH remote。
+6. 实测：初始提交 `809ea06d5ab557381783f4a2407f3c91876beca5`（`Add smart community simulation with models and setup guides`）成功推送，远端创建 main，本地跟踪 origin/main。没有强制推送，也没有创建其他远程资源。
+7. 实测：远端 HEAD 和 main 均为初始提交 `809ea06d5ab557381783f4a2407f3c91876beca5`。再次克隆到新的 `src/competition_suanfa/`（不同于指南的 smart-community 目录名），全部 215 个发布清单文件大小/SHA256一致，三个包和三份指南完整。真实模型再次执行 CPU 推理，示例车牌 OCR 为 `苏APL12A`、约 0.9812；从远端源码执行 55 项单元回归全部通过。
+8. 修改范围仅为指南整理和打包器收录 docs；本轮远端复查复用上一轮已安装 venv/ROS 系统依赖，没有重新宣称全新 OS 安装或全部视觉任务通过。此前在线导航、识别误判与 SLAM 未验收结论仍在首页保留。最后将本记录和更新后的发布清单同步到 main。
+
+原始证据：[文档/包预检](validation/20261010_github_push/preflight.json)、[暂存审计](validation/20261010_github_push/staged_audit.json)、[首次提交输出](validation/20261010_github_push/initial_commit.log)、[首次推送输出](validation/20261010_github_push/initial_push.log)。
+
+远端复查：[克隆输出](validation/20261010_github_push/remote_clone.log)、[文件与包审计](validation/20261010_github_push/remote_clone_audit.json)、[远端源码实际推理](validation/20261010_github_push/remote_inference.log)、[55 项回归](validation/20261010_github_push/remote_tests.log)。
 
 ### 结论与下一步
 
-本轮上传工作已开始，尚未推送；上一轮人物分类误判与实际 SLAM 未验收的范围保持如实记录。
+源码、模型、场地资源、规范使用说明和安装指南已经提交并推送到 [RyanYhy/competition_suanfa](https://github.com/RyanYhy/competition_suanfa) 的 main。用户可以直接发送仓库链接，接收者按照 README 和 docs/INSTALL.md 克隆、安装并运行。已完成远端回读、全清单校验、实际模型推理及 55 项回归；没有修改原工作区已有 Git 历史或识别结果。剩余技术问题为首页所列人物分类误判、运行稳定性以及实际 SLAM/实车验收，并非此次上传步骤的遗漏。
