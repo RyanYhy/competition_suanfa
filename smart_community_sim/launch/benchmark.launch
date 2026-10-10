@@ -1,0 +1,26 @@
+<launch>
+  <arg name="localization" default="lidar"/><arg name="planner" default="custom"/>
+  <arg name="profile" default="balanced"/><arg name="amcl_profile" default="baseline"/>
+  <arg name="map" default="$(find smart_community_sim)/maps/field_reference.yaml"/>
+  <arg name="keepout_map" default="$(find smart_community_sim)/maps/competition_keepout.yaml"/>
+  <arg name="state" default=""/><arg name="gui" default="false"/>
+  <arg name="output" default="/tmp/community_navigation_benchmark"/>
+  <arg name="wall_timeout" default="900"/>
+  <!-- Diagnostic comparison: identical route and simulated lamps, no vision load. -->
+  <include file="$(find smart_community_sim)/launch/patrol.launch">
+    <arg name="localization" value="$(arg localization)"/><arg name="planner" value="$(arg planner)"/>
+    <arg name="profile" value="$(arg profile)"/><arg name="amcl_profile" value="$(arg amcl_profile)"/>
+    <arg name="map" value="$(arg map)"/><arg name="keepout_map" value="$(arg keepout_map)"/>
+    <arg name="state" value="$(arg state)"/><arg name="gui" value="$(arg gui)"/><arg name="rviz" value="false"/>
+    <arg name="vision" value="false"/><arg name="traffic_prefix" value="/simulation/traffic_lights"/>
+    <arg name="diagnostics" value="false"/>
+  </include>
+  <node pkg="smart_community_sim" type="navigation_benchmark.py" name="navigation_benchmark" output="screen" required="true">
+    <param name="localization" value="$(arg localization)"/><param name="planner" value="$(arg planner)"/>
+    <param name="profile" value="$(arg profile)"/><param name="amcl_profile" value="$(arg amcl_profile)"/>
+    <param name="state_file" value="$(arg state)"/>
+    <param name="map_file" value="$(arg map)"/>
+    <param name="keepout_map_file" value="$(arg keepout_map)"/>
+    <param name="output_dir" value="$(arg output)"/><param name="wall_timeout" value="$(arg wall_timeout)"/>
+  </node>
+</launch>

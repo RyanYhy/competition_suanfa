@@ -1,0 +1,7 @@
+My_Local_Planner:
+  max_vel_trans: 0.18
+  max_vel_theta: 0.5
+  min_turn_velocity: 0.16
+  xy_goal_tolerance: 0.018
+  yaw_goal_tolerance: 0.04
+  lookahead_distance: 0.16

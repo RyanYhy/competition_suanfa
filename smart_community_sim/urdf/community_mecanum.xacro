@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<robot name="community_mecanum" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Known spawn pose seeds the odometry frame once; subsequent motion is encoder-only. -->
+  <xacro:arg name="odom_initial_x" default="0"/>
+  <xacro:arg name="odom_initial_y" default="0"/>
+  <xacro:arg name="odom_initial_yaw" default="0"/>
+  <xacro:arg name="camera_hfov" default="1.745329"/>
+  <xacro:arg name="motor_kp" default="0.04"/>
+  <xacro:arg name="motor_ki" default="0.08"/>
+  <!-- Geometry is intentionally small enough for the schematic 0.60 m lanes. -->
+  <xacro:property name="wheel_radius" value="0.054"/>
+  <xacro:property name="wheel_width" value="0.040"/>
+  <xacro:property name="wheel_x" value="0.130"/>
+  <xacro:property name="wheel_y" value="0.140"/>
+  <xacro:property name="base_z" value="0.110"/>
+
+  <material name="body_blue"><color rgba="0.07 0.32 0.66 1"/></material>
+  <material name="dark"><color rgba="0.09 0.10 0.12 1"/></material>
+  <material name="roller_gray"><color rgba="0.53 0.56 0.59 1"/></material>
+  <material name="sensor_black"><color rgba="0.03 0.04 0.05 1"/></material>
+
+  <link name="base_footprint"/>
+  <joint name="base_fixed_joint" type="fixed">
+    <parent link="base_footprint"/><child link="base_link"/>
+    <origin xyz="0 0 ${base_z}" rpy="0 0 0"/>
+  </joint>
+  <link name="base_link">
+    <visual><geometry><box size="0.30 0.22 0.10"/></geometry><material name="body_blue"/></visual>
+    <collision><geometry><box size="0.30 0.22 0.10"/></geometry></collision>
+    <inertial>
+      <mass value="4.0"/>
+      <inertia ixx="0.0197" ixy="0" ixz="0" iyy="0.0333" iyz="0" izz="0.0461"/>
+    </inertial>
+  </link>
+  <link name="sensor_support">
+    <visual><origin xyz="0 0 0.085"/><geometry><cylinder radius="0.014" length="0.17"/></geometry><material name="dark"/></visual>
+    <visual><origin xyz="0.12 0 0.11"/><geometry><box size="0.018 0.025 0.16"/></geometry><material name="dark"/></visual>
+  </link>
+  <joint name="sensor_support_joint" type="fixed"><parent link="base_link"/><child link="sensor_support"/></joint>
+  <gazebo reference="base_link"><material>Gazebo/Blue</material></gazebo>
+
+  <!-- Each roller is a passive revolute body. Only the hub receives motor torque. -->
+  <xacro:macro name="roller" params="wheel idx handedness">
+    <xacro:property name="theta" value="${idx*math.pi/8}"/>
+    <xacro:property name="ax" value="${-math.sin(theta)/math.sqrt(2)}"/>
+    <xacro:property name="ay" value="${handedness/math.sqrt(2)}"/>
+    <xacro:property name="az" value="${math.cos(theta)/math.sqrt(2)}"/>
+    <link name="${wheel}_roller_${idx}">
+      <visual><geometry><mesh filename="package://smart_community_sim/meshes/mecanum_roller.dae"/></geometry><material name="roller_gray"/></visual>
+      <collision name="middle"><geometry><sphere radius="0.014"/></geometry></collision>
+      <collision name="end_a"><origin xyz="0 0 0.012"/><geometry><sphere radius="0.010"/></geometry></collision>
+      <collision name="end_b"><origin xyz="0 0 -0.012"/><geometry><sphere radius="0.010"/></geometry></collision>
+      <inertial><mass value="0.018"/><inertia ixx="0.000003" ixy="0" ixz="0" iyy="0.000003" iyz="0" izz="0.0000015"/></inertial>
+    </link>
+    <joint name="${wheel}_roller_${idx}_joint" type="continuous">
+      <parent link="${wheel}_wheel_link"/><child link="${wheel}_roller_${idx}"/>
+      <origin xyz="${0.040*math.cos(theta)} 0 ${0.040*math.sin(theta)}"
+              rpy="0 ${math.acos(az)} ${math.atan2(ay,ax)}"/>
+      <axis xyz="0 0 1"/><dynamics damping="0.00002" friction="0"/>
+    </joint>
+    <gazebo reference="${wheel}_roller_${idx}">
+      <material>Gazebo/DarkGrey</material><mu1>1.0</mu1><mu2>1.0</mu2>
+      <kp>100000</kp><kd>10</kd><minDepth>0.0001</minDepth><maxVel>0.1</maxVel>
+      <selfCollide>false</selfCollide><maxContacts>4</maxContacts>
+    </gazebo>
+  </xacro:macro>
+  <xacro:macro name="mecanum_wheel" params="name x y handedness">
+    <link name="${name}_wheel_link">
+      <visual><origin rpy="${math.pi/2} 0 0"/><geometry><cylinder radius="0.028" length="0.032"/></geometry><material name="dark"/></visual>
+      <collision><origin rpy="${math.pi/2} 0 0"/><geometry><cylinder radius="0.028" length="0.032"/></geometry></collision>
+      <inertial><mass value="0.10"/><inertia ixx="0.000035" ixy="0" ixz="0" iyy="0.0000392" iyz="0" izz="0.000035"/></inertial>
+    </link>
+    <joint name="${name}_wheel_joint" type="continuous">
+      <parent link="base_link"/><child link="${name}_wheel_link"/>
+      <origin xyz="${x} ${y} ${wheel_radius-base_z}"/><axis xyz="0 1 0"/>
+      <dynamics damping="0.0001" friction="0"/>
+    </joint>
+    <gazebo reference="${name}_wheel_link"><material>Gazebo/Black</material><selfCollide>false</selfCollide></gazebo>
+    <xacro:roller wheel="${name}" idx="0" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="1" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="2" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="3" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="4" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="5" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="6" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="7" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="8" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="9" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="10" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="11" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="12" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="13" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="14" handedness="${handedness}"/>
+    <xacro:roller wheel="${name}" idx="15" handedness="${handedness}"/>
+  </xacro:macro>
+  <!-- At bottom contact FL/RR roller axles slope -45 degrees, FR/RL +45 degrees. -->
+  <xacro:mecanum_wheel name="front_left" x="${wheel_x}" y="${wheel_y}" handedness="-1"/>
+  <xacro:mecanum_wheel name="front_right" x="${wheel_x}" y="${-wheel_y}" handedness="1"/>
+  <xacro:mecanum_wheel name="rear_left" x="${-wheel_x}" y="${wheel_y}" handedness="1"/>
+  <xacro:mecanum_wheel name="rear_right" x="${-wheel_x}" y="${-wheel_y}" handedness="-1"/>
+
+  <link name="laser_link">
+    <visual><geometry><cylinder radius="0.043" length="0.032"/></geometry><material name="sensor_black"/></visual>
+    <collision><geometry><cylinder radius="0.043" length="0.032"/></geometry></collision>
+    <inertial><mass value="0.15"/><inertia ixx="0.00009" ixy="0" ixz="0" iyy="0.00009" iyz="0" izz="0.00014"/></inertial>
+  </link>
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/><child link="laser_link"/>
+    <origin xyz="0 0 0.155" rpy="0 0 0"/>
+  </joint>
+  <gazebo reference="laser_link">
+    <material>Gazebo/Black</material>
+    <sensor name="laser" type="ray">
+      <always_on>true</always_on><update_rate>12</update_rate><visualize>false</visualize>
+      <ray>
+        <scan><horizontal><samples>720</samples><resolution>1</resolution>
+          <min_angle>-${math.pi}</min_angle><max_angle>${math.pi}</max_angle>
+        </horizontal></scan>
+        <range><min>0.08</min><max>8.0</max><resolution>0.01</resolution></range>
+      </ray>
+      <plugin name="laser_ros" filename="libgazebo_ros_laser.so">
+        <topicName>scan</topicName><frameName>laser_link</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+
+  <link name="camera_link">
+    <collision><geometry><box size="0.045 0.070 0.045"/></geometry></collision>
+    <visual><geometry><box size="0.045 0.070 0.045"/></geometry><material name="sensor_black"/></visual>
+    <inertial><mass value="0.08"/><inertia ixx="0.00005" ixy="0" ixz="0" iyy="0.00004" iyz="0" izz="0.00006"/></inertial>
+  </link>
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/><child link="camera_link"/>
+    <origin xyz="0.12 0 0.170" rpy="0 0.18 0"/>
+  </joint>
+  <gazebo reference="camera_link">
+    <material>Gazebo/Black</material>
+    <sensor name="front_camera" type="camera">
+      <always_on>true</always_on><update_rate>20</update_rate>
+      <camera><horizontal_fov>$(arg camera_hfov)</horizontal_fov>
+        <image><width>1280</width><height>960</height><format>R8G8B8</format></image>
+        <clip><near>0.05</near><far>8.0</far></clip>
+      </camera>
+      <plugin name="camera_ros" filename="libgazebo_ros_camera.so">
+        <cameraName>front_camera</cameraName>
+        <imageTopicName>image_raw</imageTopicName>
+        <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+        <frameName>camera_optical_frame</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
+  <link name="camera_optical_frame"/>
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/><child link="camera_optical_frame"/>
+    <origin xyz="0 0 0" rpy="${-math.pi/2} 0 ${-math.pi/2}"/>
+  </joint>
+
+  <!-- Four-wheel inverse kinematics, odometry and TF are handled by this plugin. -->
+  <gazebo>
+    <plugin name="mecanum_drive" filename="libcommunity_mecanum_drive.so">
+      <wheelRadius>${wheel_radius}</wheelRadius>
+      <wheelX>${wheel_x}</wheelX>
+      <wheelY>${wheel_y}</wheelY>
+      <commandTimeout>0.5</commandTimeout>
+      <initialX>$(arg odom_initial_x)</initialX>
+      <initialY>$(arg odom_initial_y)</initialY>
+      <initialYaw>$(arg odom_initial_yaw)</initialYaw>
+      <motorKp>$(arg motor_kp)</motorKp><motorKi>$(arg motor_ki)</motorKi><motorVelocityFilter>0.01</motorVelocityFilter>
+      <maxTorque>0.45</maxTorque><maxWheelSpeed>8</maxWheelSpeed>
+    </plugin>
+  </gazebo>
+</robot>

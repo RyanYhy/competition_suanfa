@@ -1,0 +1,29 @@
+# Generated catkin workspace files (the package CMakeLists.txt files are kept).
+/CMakeLists.txt
+/build/
+/devel/
+/install/
+/log/
+/logs/
+/release/
+/.venv/
+/.catkin_tools/
+.community_source_export
+.vscode/
+.idea/
+__pycache__/
+*.py[cod]
+*.so
+*.o
+*.bag
+*.pbstream
+*.community_results
+smart_community_sim/validation/
+doc/validation/
+# Source documents stay local; required textures are already in the ROS package.
+doc/复赛资料/
+doc/*.pdf
+doc/*.docx
+doc/随机车牌*
+# Old backup is not compiled and is not part of the release.
+my_local_planner/src/*\ copy.cpp

@@ -1,0 +1,15 @@
+<launch>
+  <arg name="start_sim" default="true"/><arg name="gui" default="true"/>
+  <arg name="x" default="1.65"/><arg name="y" default="1.75"/><arg name="yaw" default="3.14159"/>
+  <param name="use_sim_time" value="true"/>
+  <include if="$(arg start_sim)" file="$(find smart_community_sim)/launch/robot.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="x" value="$(arg x)"/><arg name="y" value="$(arg y)"/><arg name="yaw" value="$(arg yaw)"/>
+  </include>
+  <include file="$(find smart_community_sim)/launch/cartographer_backend.launch">
+    <arg name="anchor_x" value="$(arg x)"/><arg name="anchor_y" value="$(arg y)"/><arg name="anchor_yaw" value="$(arg yaw)"/>
+  </include>
+  <node pkg="cartographer_ros" type="cartographer_occupancy_grid_node" name="cartographer_grid" args="-resolution 0.02 -publish_period_sec 1.0" output="screen">
+    <remap from="map" to="/cartographer/grid"/>
+  </node>
+</launch>

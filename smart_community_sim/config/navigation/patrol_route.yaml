@@ -1,0 +1,23 @@
+# Official single lap: top west -> west south -> middle east -> middle south
+# -> bottom east -> east north -> start. Observation rotations stay in the lane.
+frame_id: map
+waypoints:
+  - {name: start_centerline, x: 1.65, y: 1.80, yaw: 3.14159}
+  - {name: north_wait, x: 0.68, y: 1.80, yaw: 3.14159, signal: north_signal}
+  - {name: north_crossing_exit, x: -0.85, y: 1.80, yaw: 3.14159}
+  - {name: observe_A_north, x: -0.85, y: 1.80, yaw: -1.5708, district: A, dwell: 4.0}
+  - {name: northwest, x: -1.80, y: 1.80, yaw: -1.5708}
+  - {name: observe_A_west, x: -1.80, y: 1.22, yaw: 0.0, district: A, dwell: 4.0}
+  - {name: west_junction, x: -1.80, y: 0.60, yaw: 0.0}
+  - {name: observe_A_south, x: -0.95, y: 0.60, yaw: 1.5708, district: A, dwell: 4.0}
+  - {name: observe_B_north, x: -0.95, y: 0.60, yaw: -1.5708, district: B, dwell: 4.0}
+  - {name: middle_junction, x: -0.10, y: 0.60, yaw: -1.5708}
+  - {name: observe_B_east, x: -0.10, y: -0.23, yaw: 3.14159, district: B, dwell: 4.0}
+  - {name: south_wait, x: -0.10, y: -0.17, yaw: -1.5708, signal: south_signal}
+  - {name: south_crossing_exit, x: -0.10, y: -1.80, yaw: -1.5708}
+  - {name: southeast, x: 1.10, y: -1.80, yaw: 1.5708}
+  - {name: observe_plate_1, x: 1.10, y: -1.79, yaw: 0.0, dwell: 4.0}
+  - {name: observe_plate_2, x: 1.10, y: -1.19, yaw: 0.0, dwell: 4.0}
+  - {name: observe_plate_3, x: 1.10, y: -0.59, yaw: 0.0, dwell: 4.0}
+  - {name: northeast, x: 1.10, y: 1.80, yaw: 0.0}
+  - {name: finish, x: 1.65, y: 1.80, yaw: 3.14159}

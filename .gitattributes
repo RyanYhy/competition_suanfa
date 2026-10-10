@@ -1,0 +1,13 @@
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.cpp text eol=lf
+*.hpp text eol=lf
+*.h text eol=lf
+*.launch text eol=lf
+*.yaml text eol=lf
+*.onnx binary
+*.png binary
+*.jpg binary
+*.pgm binary
+*.zip binary

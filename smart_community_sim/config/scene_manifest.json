@@ -1,0 +1,211 @@
+{
+  "field_size_m": [
+    4.2,
+    4.2
+  ],
+  "road_width_m": 0.6,
+  "perimeter_wall": {
+    "height_m": 0.5,
+    "thickness_m": 0.005,
+    "source": "9.24 PDF p14 required walls; p15 recommended dimensions"
+  },
+  "traffic_gantry": {
+    "outer_width_m": 0.64,
+    "post_width_m": 0.025,
+    "post_center_span_m": 0.615,
+    "clear_width_m": 0.59,
+    "total_height_m": 0.48,
+    "housing_height_m": 0.14,
+    "housing_width_m": 0.59,
+    "depth_m": 0.05,
+    "post_height_m": 0.48,
+    "clear_height_m": 0.34
+  },
+  "car_board_m": {
+    "width": 0.345,
+    "height": 0.25,
+    "thickness": 0.0005
+  },
+  "plate_m": {
+    "width": 0.095,
+    "height": 0.03,
+    "thickness": 0.0001,
+    "independent_models": true
+  },
+  "person_board_m": {
+    "width": 0.05,
+    "height": 0.15,
+    "thickness": 0.005
+  },
+  "person_height_m": 0.15,
+  "person_height_source": "9.24 PDF p5; artwork fits without stretching",
+  "source": "doc/9.24智慧社区详细规则.pdf pp3-8,14-15; original organizer textures and user random plate images",
+  "persons": {
+    "A": 9,
+    "B": 9
+  },
+  "person_counts": {
+    "residents": 16,
+    "visitors": 2
+  },
+  "person_placements": [
+    {
+      "district": "A",
+      "identity": "resident_1",
+      "x": -1.36,
+      "y": 1.17,
+      "yaw": 3.141592653589793
+    },
+    {
+      "district": "A",
+      "identity": "resident_2",
+      "x": -1.1,
+      "y": 1.07,
+      "yaw": -1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "visitor_F1",
+      "x": -1.0,
+      "y": 1.07,
+      "yaw": -1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "resident_3",
+      "x": -0.9,
+      "y": 1.07,
+      "yaw": -1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "resident_4",
+      "x": -0.85,
+      "y": 1.32,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "resident_9",
+      "x": -0.95,
+      "y": 1.32,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "resident_10",
+      "x": -0.75,
+      "y": 1.32,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "resident_11",
+      "x": -0.8,
+      "y": 1.07,
+      "yaw": -1.5707963267948966
+    },
+    {
+      "district": "A",
+      "identity": "resident_12",
+      "x": -1.36,
+      "y": 1.27,
+      "yaw": 3.141592653589793
+    },
+    {
+      "district": "B",
+      "identity": "resident_5",
+      "x": -1.15,
+      "y": 0.14,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "B",
+      "identity": "resident_6",
+      "x": -0.95,
+      "y": 0.14,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "B",
+      "identity": "resident_7",
+      "x": -0.85,
+      "y": 0.14,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "B",
+      "identity": "visitor_F2",
+      "x": -0.53,
+      "y": -0.08,
+      "yaw": 0
+    },
+    {
+      "district": "B",
+      "identity": "resident_8",
+      "x": -0.53,
+      "y": -0.28,
+      "yaw": 0
+    },
+    {
+      "district": "B",
+      "identity": "resident_13",
+      "x": -1.05,
+      "y": 0.14,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "B",
+      "identity": "resident_14",
+      "x": -0.75,
+      "y": 0.14,
+      "yaw": 1.5707963267948966
+    },
+    {
+      "district": "B",
+      "identity": "resident_15",
+      "x": -0.53,
+      "y": -0.18,
+      "yaw": 0
+    },
+    {
+      "district": "B",
+      "identity": "resident_16",
+      "x": -0.53,
+      "y": -0.38,
+      "yaw": 0
+    }
+  ],
+  "plates": [
+    {
+      "model": "license_plate_1",
+      "texture": "random_plate_1",
+      "source": "doc/随机车牌1",
+      "kind": "user_random"
+    },
+    {
+      "model": "license_plate_2",
+      "texture": "random_plate_2",
+      "source": "doc/随机车牌2",
+      "kind": "user_random"
+    },
+    {
+      "model": "license_plate_3",
+      "texture": "plate_3",
+      "source": "doc/复赛资料/车辆识别/车牌三.png",
+      "kind": "official_example"
+    }
+  ],
+  "signals_seconds": {
+    "red": 10,
+    "green": 15,
+    "yellow": 5
+  },
+  "assumptions": [
+    "three parking bays: two user random plates and one official example",
+    "map schematic normalized to labelled 0.60 m lanes; not a surveyed map",
+    "standee identities, within-district offsets and plate mounting height are simulation choices",
+    "PDF p5 person width 5 cm takes precedence over p19 tutorial example 4 cm"
+  ],
+  "models": 29
+}

@@ -1,0 +1,21 @@
+<launch>
+  <arg name="gui" default="true"/>
+  <arg name="motor_kp" default="0.04"/>
+  <arg name="motor_ki" default="0.08"/>
+  <arg name="verify" default="false"/>
+  <arg name="rotation_only" default="false"/>
+  <arg name="report" default="/tmp/community_motion_report.json"/>
+  <include file="$(find smart_community_sim)/launch/robot.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="motor_kp" value="$(arg motor_kp)"/>
+    <arg name="motor_ki" value="$(arg motor_ki)"/>
+    <arg name="drive_test" value="true"/>
+    <arg name="world" value="$(find smart_community_sim)/worlds/drive_test.world"/>
+    <arg name="x" value="0"/><arg name="y" value="0"/><arg name="yaw" value="0"/>
+  </include>
+  <node if="$(arg verify)" pkg="smart_community_sim" type="verify_keyboard_drive.py"
+        name="verify_keyboard_drive" output="screen">
+    <param name="report" value="$(arg report)"/>
+    <param name="rotation_only" value="$(arg rotation_only)"/>
+  </node>
+</launch>

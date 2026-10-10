@@ -1,0 +1,21 @@
+# Ubuntu 20.04 / ROS Noetic / Python 3.8, CPU inference.
+# Use tools/setup.sh: its venv inherits apt's cv2 and cv_bridge.
+# --no-deps is intentional: RapidOCR's opencv-python dependency is supplied
+# by python3-opencv, avoiding a second cv2 installation. All other Python
+# runtime dependencies are explicitly listed below (including ORT's extras).
+numpy==1.24.4
+onnxruntime==1.16.3
+rapidocr_onnxruntime==1.3.24
+pyclipper==1.3.0.post6
+shapely==2.0.6
+coloredlogs==15.0.1
+humanfriendly==10.0
+flatbuffers==24.3.25
+packaging==24.2
+protobuf==4.25.8
+sympy==1.13.3
+mpmath==1.3.0
+six==1.17.0
+PyYAML==6.0.2
+# recognition_overlay currently uses ImageFont.getsize (removed in Pillow 10).
+Pillow==9.5.0

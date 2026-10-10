@@ -1,0 +1,6 @@
+# User-supplied detection ONNX models; character recognition via PP-OCRv4.
+confidence: 0.15
+thresholds: {person: 0.20, plate: 0.35, signal: 0.50}
+ocr_confidence: 0.65
+max_fps: 5.0
+required_people: {A: 9, B: 9}

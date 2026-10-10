@@ -1,0 +1,240 @@
+material Community/resident_1
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_1.png } } }
+}
+material Community/resident_2
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_2.png } } }
+}
+material Community/resident_3
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_3.png } } }
+}
+material Community/resident_4
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_4.png } } }
+}
+material Community/resident_5
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_5.png } } }
+}
+material Community/resident_6
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_6.png } } }
+}
+material Community/resident_7
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_7.png } } }
+}
+material Community/resident_8
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_8.png } } }
+}
+material Community/resident_9
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_9.png } } }
+}
+material Community/resident_10
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_10.png } } }
+}
+material Community/resident_11
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_11.png } } }
+}
+material Community/resident_12
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_12.png } } }
+}
+material Community/resident_13
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_13.png } } }
+}
+material Community/resident_14
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_14.png } } }
+}
+material Community/resident_15
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_15.png } } }
+}
+material Community/resident_16
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture resident_16.png } } }
+}
+material Community/visitor_F1
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture visitor_F1.png } } }
+}
+material Community/visitor_F2
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture visitor_F2.png } } }
+}
+material Community/signal_red_on
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture signal_red_on.png } } }
+}
+material Community/signal_red_off
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture signal_red_off.png } } }
+}
+material Community/signal_yellow_on
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture signal_yellow_on.png } } }
+}
+material Community/signal_yellow_off
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture signal_yellow_off.png } } }
+}
+material Community/signal_green_on
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture signal_green_on.png } } }
+}
+material Community/signal_green_off
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture signal_green_off.png } } }
+}
+material Community/plate_1
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture plate_1.png } } }
+}
+material Community/plate_2
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture plate_2.png } } }
+}
+material Community/plate_3
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture plate_3.png } } }
+}
+material Community/car_background
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture car_background.png } } }
+}
+material Community/random_plate_1
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture random_plate_1.png } } }
+}
+material Community/random_plate_2
+{
+ technique { pass { lighting off
+ scene_blend alpha_blend
+ alpha_rejection greater 128
+ cull_hardware clockwise
+ texture_unit { texture random_plate_2.png } } }
+}

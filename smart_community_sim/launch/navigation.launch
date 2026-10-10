@@ -1,0 +1,86 @@
+<launch>
+  <arg name="localization" default="lidar"/>
+  <arg name="planner" default="custom"/>
+  <arg name="profile" default="balanced"/>
+  <arg name="amcl_profile" default="baseline"/>
+  <arg name="validate_localization" default="$(eval dict(amcl=1, cartographer=1, lidar=1)[arg('localization')])"/>
+  <arg name="validate_planner" default="$(eval dict(dwa=1, teb=1, custom=1)[arg('planner')])"/>
+  <arg name="state" default=""/>
+  <arg name="anchor_x" default="1.65"/><arg name="anchor_y" default="1.75"/><arg name="anchor_yaw" default="3.14159"/>
+  <arg name="cmd_vel_topic" default="/cmd_vel"/>
+  <arg name="start_sim" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="camera_hfov" default="1.745329"/>
+  <arg name="rviz" default="false"/>
+  <arg name="node_output" default="screen"/>
+  <arg name="map" default="$(find smart_community_sim)/maps/field_reference.yaml"/>
+  <arg name="use_keepout" default="true"/>
+  <arg name="keepout_map" default="$(find smart_community_sim)/maps/competition_keepout.yaml"/>
+  <arg name="x" default="1.65"/><arg name="y" default="1.75"/><arg name="yaw" default="3.14159"/>
+  <param name="use_sim_time" value="true"/>
+  <include if="$(arg start_sim)" file="$(find smart_community_sim)/launch/robot.launch">
+    <arg name="node_output" value="$(arg node_output)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="camera_hfov" value="$(arg camera_hfov)"/>
+    <arg name="x" value="$(arg x)"/><arg name="y" value="$(arg y)"/><arg name="yaw" value="$(arg yaw)"/>
+  </include>
+  <node pkg="map_server" type="map_server" name="map_server" args="$(arg map)" output="$(arg node_output)">
+    <param name="frame_id" value="map"/>
+  </node>
+  <node if="$(arg use_keepout)" pkg="map_server" type="map_server" name="keepout_map_server" args="$(arg keepout_map)">
+    <param name="frame_id" value="map"/>
+    <remap from="map" to="/competition_keepout"/>
+    <remap from="map_metadata" to="/competition_keepout_metadata"/>
+    <remap from="static_map" to="/competition_keepout_static_map"/>
+  </node>
+  <node if="$(eval arg('localization') == 'amcl')" pkg="amcl" type="amcl" name="amcl" output="$(arg node_output)" clear_params="true">
+    <rosparam command="load" file="$(find smart_community_sim)/config/navigation/amcl_$(arg amcl_profile).yaml"/>
+    <param name="initial_pose_x" value="$(arg x)"/>
+    <param name="initial_pose_y" value="$(arg y)"/>
+    <param name="initial_pose_a" value="$(arg yaw)"/>
+    <remap from="scan" to="/scan"/>
+  </node>
+  <node if="$(eval arg('localization') == 'lidar')" pkg="jie_ware" type="lidar_loc" name="lidar_loc" output="$(arg node_output)" clear_params="true">
+    <param name="base_frame" value="base_footprint"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="laser_topic" value="/scan"/>
+    <param name="initial_pose_x" value="$(arg x)"/>
+    <param name="initial_pose_y" value="$(arg y)"/>
+    <param name="initial_pose_a" value="$(arg yaw)"/>
+  </node>
+  <include if="$(eval arg('localization') == 'cartographer')" file="$(find smart_community_sim)/launch/cartographer_backend.launch">
+    <arg name="node_output" value="$(arg node_output)"/>
+    <arg name="localize" value="true"/><arg name="state" value="$(arg state)"/>
+    <arg name="anchor_x" value="$(arg anchor_x)"/><arg name="anchor_y" value="$(arg anchor_y)"/><arg name="anchor_yaw" value="$(arg anchor_yaw)"/>
+    <arg name="x" value="$(arg x)"/><arg name="y" value="$(arg y)"/><arg name="yaw" value="$(arg yaw)"/>
+  </include>
+  <node pkg="move_base" type="move_base" name="move_base" output="$(arg node_output)" clear_params="true">
+    <rosparam command="load" file="$(find smart_community_sim)/config/navigation/profiles/$(arg profile).yaml"/>
+    <rosparam command="load" file="$(find smart_community_sim)/config/navigation/costmap_common.yaml" ns="global_costmap"/>
+    <rosparam command="load" file="$(find smart_community_sim)/config/navigation/costmap_common.yaml" ns="local_costmap"/>
+    <rosparam command="load" file="$(find smart_community_sim)/config/navigation/global_costmap.yaml" ns="global_costmap"/>
+    <rosparam command="load" file="$(find smart_community_sim)/config/navigation/local_costmap.yaml" ns="local_costmap"/>
+    <rosparam if="$(arg use_keepout)" param="global_costmap/plugins">
+      - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+      - {name: obstacle_layer, type: 'costmap_2d::ObstacleLayer'}
+      - {name: keepout_layer, type: 'costmap_2d::StaticLayer'}
+      - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+    </rosparam>
+    <rosparam if="$(arg use_keepout)" param="local_costmap/plugins">
+      - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+      - {name: obstacle_layer, type: 'costmap_2d::ObstacleLayer'}
+      - {name: keepout_layer, type: 'costmap_2d::StaticLayer'}
+      - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+    </rosparam>
+    <rosparam if="$(eval arg('planner') == 'teb')" command="load" file="$(find smart_community_sim)/config/navigation/teb.yaml"/>
+    <!-- Holonomic motion need not point the chassis along each path segment. -->
+    <param if="$(eval arg('planner') == 'teb')" name="GlobalPlanner/orientation_mode" value="2"/>
+    <param if="$(eval arg('planner') == 'teb' and arg('profile') == 'fast')" name="TebLocalPlannerROS/max_vel_x" value="0.24"/>
+    <param if="$(eval arg('planner') == 'teb' and arg('profile') == 'fast')" name="TebLocalPlannerROS/max_vel_y" value="0.18"/>
+    <param if="$(eval arg('planner') == 'teb' and arg('profile') == 'fast')" name="TebLocalPlannerROS/max_vel_theta" value="0.6"/>
+    <rosparam if="$(eval arg('planner') == 'custom')" command="load" file="$(find smart_community_sim)/config/navigation/custom.yaml"/>
+    <param if="$(eval arg('planner') == 'custom')" name="base_local_planner" value="my_local_planner/My_Local_Planner"/>
+    <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+  </node>
+  <node if="$(arg rviz)" pkg="rviz" type="rviz" name="rviz" args="-d $(find smart_community_sim)/rviz/navigation.rviz"/>
+</launch>

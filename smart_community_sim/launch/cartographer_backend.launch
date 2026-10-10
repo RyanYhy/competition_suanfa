@@ -1,0 +1,23 @@
+<launch>
+  <arg name="localize" default="false"/>
+  <arg name="node_output" default="screen"/>
+  <arg name="state" default=""/>
+  <arg name="anchor_x" default="1.65"/><arg name="anchor_y" default="1.75"/><arg name="anchor_yaw" default="3.14159"/>
+  <arg name="x" default="1.65"/><arg name="y" default="1.75"/><arg name="yaw" default="3.14159"/>
+  <arg name="start_default" default="$(eval 'false' if arg('localize') else 'true')"/>
+  <arg name="configuration" default="$(eval 'community_localization.lua' if arg('localize') else 'community_2d.lua')"/>
+  <node pkg="tf2_ros" type="static_transform_publisher" name="cartographer_scene_anchor"
+        args="$(arg anchor_x) $(arg anchor_y) 0 $(arg anchor_yaw) 0 0 map cartographer_map"/>
+  <node pkg="cartographer_ros" type="cartographer_node" name="cartographer_node" output="$(arg node_output)" required="true"
+        args="-configuration_directory $(find smart_community_sim)/config/cartographer -configuration_basename $(arg configuration) -load_state_filename=$(arg state) -load_frozen_state=true -start_trajectory_with_default_topics=$(arg start_default)">
+    <remap from="scan" to="/scan"/><remap from="odom" to="/odom"/>
+  </node>
+  <node if="$(arg localize)" pkg="smart_community_sim" type="start_cartographer_localization.py" name="cartographer_initializer" output="$(arg node_output)" required="true">
+    <param name="state" value="$(arg state)"/>
+    <param name="anchor_x" value="$(arg anchor_x)"/><param name="anchor_y" value="$(arg anchor_y)"/><param name="anchor_yaw" value="$(arg anchor_yaw)"/>
+    <param name="x" value="$(arg x)"/><param name="y" value="$(arg y)"/><param name="yaw" value="$(arg yaw)"/>
+  </node>
+  <param name="/cartographer_anchor/x" value="$(arg anchor_x)"/>
+  <param name="/cartographer_anchor/y" value="$(arg anchor_y)"/>
+  <param name="/cartographer_anchor/yaw" value="$(arg anchor_yaw)"/>
+</launch>

@@ -1,0 +1,1083 @@
+{
+  "format": 1,
+  "name": "smart-community",
+  "ros": "noetic",
+  "ubuntu": "20.04",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6148,
+      "sha256": "cf4864ec6a668f96897a4eb6dd006e73fe80312a5997b81664fb31d0fc89d4e5"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 1833,
+      "sha256": "516f2fc05b20f18e5d2e0ced79f74a9e8814f62741579ab7ba2a9a0a5279039e"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 559,
+      "sha256": "faaa7fab8c82a5ff32243e68818998d980a62727f4164c8bd6394906454da460"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 204,
+      "sha256": "710652a20421ef9eb72a40e5326f7ac071c9eabc52cfa4ca80dfa6ddb483d850"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 819,
+      "sha256": "f2dbaf6c9f01bf8296724483c4310627ce6e158bf3c0b3cd1252d791d1fd168f"
+    },
+    {
+      "path": "smart_community_sim/CMakeLists.txt",
+      "bytes": 1675,
+      "sha256": "97ec1b736c1f798412a79bd27dab2920d011ea86d58661e04791e9a878dfc6f5"
+    },
+    {
+      "path": "smart_community_sim/NAVIGATION.md",
+      "bytes": 10870,
+      "sha256": "098b02b324cc23a306bfbdc58a33e0be133d8b349cce8533cdd31da876423ce9"
+    },
+    {
+      "path": "smart_community_sim/README.md",
+      "bytes": 13133,
+      "sha256": "70541ec71a6ada479f7b2b1c9ccf46cc5507bec071bc9baeafaeff6b082aa781"
+    },
+    {
+      "path": "smart_community_sim/field_layout.png",
+      "bytes": 35295,
+      "sha256": "faa7c853bef5fbc6b70569624274efa99d87c51d43c6541b44eb3715c9dd2512"
+    },
+    {
+      "path": "smart_community_sim/package.xml",
+      "bytes": 2013,
+      "sha256": "cc69449980fe822bdab47d6b14895bfd1a4f5bb2112e309186d3a99729eecf5f"
+    },
+    {
+      "path": "smart_community_sim/requirements-vision.txt",
+      "bytes": 691,
+      "sha256": "3a36cf1799b632cb653dfb289092edec445edaa10b32571bf5212e335d837452"
+    },
+    {
+      "path": "smart_community_sim/setup.py",
+      "bytes": 184,
+      "sha256": "e5ac150201853be430ff5314686c19dc7c787a377935e0ed3a3338cbad5cab78"
+    },
+    {
+      "path": "smart_community_sim/config/recognition_assets.json",
+      "bytes": 5588,
+      "sha256": "2a1de60a564a982af16e2f2ebb59a135e7a10080d04db916654d7d850059e05e"
+    },
+    {
+      "path": "smart_community_sim/config/scene_manifest.json",
+      "bytes": 4471,
+      "sha256": "289a5c6b5c4096c1a158a496d7ba501e153097eab3254f48d7baa9e9ec2da09c"
+    },
+    {
+      "path": "smart_community_sim/config/vision.yaml",
+      "bytes": 210,
+      "sha256": "3f56d67a5ef97a23239cda03959a5fd781283d2d4de8eaa85650c6f1c2714466"
+    },
+    {
+      "path": "smart_community_sim/config/cartographer/community_2d.lua",
+      "bytes": 2176,
+      "sha256": "3f489e315cb7dbc3b84967e6013430308ba8dd8049301ae0ab4b921d118a465d"
+    },
+    {
+      "path": "smart_community_sim/config/cartographer/community_localization.lua",
+      "bytes": 207,
+      "sha256": "48d0b0ba365aa0cc11f7a2c8bec668b9d172c9ce32c696125c1aff82f18fc446"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/amcl.yaml",
+      "bytes": 730,
+      "sha256": "3538fc09b504fa2948b0babd1a8a0253bd4693264706bb8845c63ea60c83b837"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/amcl_baseline.yaml",
+      "bytes": 730,
+      "sha256": "3538fc09b504fa2948b0babd1a8a0253bd4693264706bb8845c63ea60c83b837"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/amcl_dense.yaml",
+      "bytes": 731,
+      "sha256": "09e27b30d828cd8b9cedcf80c3b539ca6f41542a20493530aa28c9708274cfe3"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/costmap_common.yaml",
+      "bytes": 962,
+      "sha256": "a5aa62917cc1a263da3110201d1ede139e8e76991476287431aa1dc13c52e78a"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/custom.yaml",
+      "bytes": 168,
+      "sha256": "bd35447de395be7c0a345cb3c1ea6fb2fc47b25d93a8e2c4d9981b15c2e6d841"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/global_costmap.yaml",
+      "bytes": 304,
+      "sha256": "1516d26062e7ba84566b157870c9403634d04b57905f67bceea1b25daec1ff37"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/gmapping.yaml",
+      "bytes": 540,
+      "sha256": "e028b1ab0180999c6db903003d42c1a6f45df6cbed121df988a57ea7625dc3d4"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/gmapping_precise.yaml",
+      "bytes": 619,
+      "sha256": "fb4888f0456faee4b6d67fd67e903878e82e6c38e822ddf2991b47c92700233a"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/local_costmap.yaml",
+      "bytes": 328,
+      "sha256": "6663440fb02871e95e5dd43bca57bfffba7d489da4ffca08142028d32ba964f4"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/move_base.yaml",
+      "bytes": 1486,
+      "sha256": "62bb3cd2e375c16c228349d850f304f764e66705a145e7d3c13ee0d01955a77f"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/patrol_route.yaml",
+      "bytes": 1488,
+      "sha256": "d7ecae650850999164d93a0e715a54bfb4851c5c7d7693cefc97b2ee7f6c3d8f"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/teb.yaml",
+      "bytes": 1350,
+      "sha256": "ad5da8aa7ff5cf33590b077eb7f27c5438411649beaf259ae9ac9e40e0627128"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/profiles/balanced.yaml",
+      "bytes": 1662,
+      "sha256": "c6d693ef32bd179458826d13329f8d731ab41440b6f24ae1ec16f45de682cd73"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/profiles/baseline.yaml",
+      "bytes": 1486,
+      "sha256": "7a28f8d4225cdb3e62d32888eecc7fdcff44235a9f9b0f15a200d9ce1bdb7765"
+    },
+    {
+      "path": "smart_community_sim/config/navigation/profiles/fast.yaml",
+      "bytes": 1578,
+      "sha256": "3a6a7c9a33406e797b877d4adcfac5db0687ac7f2644b7939ddb8f9f3bfd8205"
+    },
+    {
+      "path": "smart_community_sim/launch/benchmark.launch",
+      "bytes": 1897,
+      "sha256": "c3e65817af4a7b03153b05be38c34d8ee4bd3a04f06043cacd11e75f3f3190ca"
+    },
+    {
+      "path": "smart_community_sim/launch/cartographer_backend.launch",
+      "bytes": 1892,
+      "sha256": "300e9d894cae5569d0a65486fb2943a6409af2f189645b31b2fe914512493f66"
+    },
+    {
+      "path": "smart_community_sim/launch/cartographer_mapping.launch",
+      "bytes": 922,
+      "sha256": "21fca254552240b4cbdd76ed75b237bc3827ba7a28539a3c202bcf88e014a2f5"
+    },
+    {
+      "path": "smart_community_sim/launch/drive_test.launch",
+      "bytes": 978,
+      "sha256": "d23a37bc37e3b0992191ce9b3aec3975e97ec0739adbbabb64e3b6816370ef44"
+    },
+    {
+      "path": "smart_community_sim/launch/field.launch",
+      "bytes": 538,
+      "sha256": "db23ec261f76ab3757d223caa57e113a0ffe7fc7722e198911daab5f5adb86f4"
+    },
+    {
+      "path": "smart_community_sim/launch/mapping.launch",
+      "bytes": 868,
+      "sha256": "e0e7bd3b4f1bbf14d09b6e0a3183fc2d28061a7b21859d9facef08b40aeca495"
+    },
+    {
+      "path": "smart_community_sim/launch/mapping_observer.launch",
+      "bytes": 930,
+      "sha256": "62497d8524f0ece6bf419bffc7992462c2c13a56e045f69b7189c5e66fc57dd7"
+    },
+    {
+      "path": "smart_community_sim/launch/navigation.launch",
+      "bytes": 6048,
+      "sha256": "af25b36a0ac43d47d62fd60305fdc769dbd5ab1291df853b82a13ad9b3dd6376"
+    },
+    {
+      "path": "smart_community_sim/launch/patrol.launch",
+      "bytes": 4410,
+      "sha256": "838f3832af298ef933074ed1552185389bc008cb5753a14f3b22c8f3d1612018"
+    },
+    {
+      "path": "smart_community_sim/launch/robot.launch",
+      "bytes": 1348,
+      "sha256": "b65447504393b25be9ac68bfb00eab40defa20b6c6ea77c239ab3f14654327f0"
+    },
+    {
+      "path": "smart_community_sim/launch/vision_benchmark.launch",
+      "bytes": 2606,
+      "sha256": "4de64b1b9de53e073962725692a20fdbad92ec1747f77ce8e8b6c92fd1902b5c"
+    },
+    {
+      "path": "smart_community_sim/maps/competition_keepout.pgm",
+      "bytes": 52915,
+      "sha256": "8956c95a752a4c1f5a963d2156e63601b9d1255c65f769d6dc04b621d94fe5df"
+    },
+    {
+      "path": "smart_community_sim/maps/competition_keepout.yaml",
+      "bytes": 127,
+      "sha256": "f8f0fd94322a2aba15fcdd5c46bd2fc67110471224a951334f0dfe5f9aa72880"
+    },
+    {
+      "path": "smart_community_sim/maps/competition_keepout_gmapping.pgm",
+      "bytes": 640015,
+      "sha256": "7beac16c5f878f0f56e06c7201d21bc2eb93298fc5b6966087f4cbe8ed154202"
+    },
+    {
+      "path": "smart_community_sim/maps/competition_keepout_gmapping.yaml",
+      "bytes": 136,
+      "sha256": "c0309599b7a72cbf210b0336720968bec6fcdb038ecdff8be1db13758dc8dd26"
+    },
+    {
+      "path": "smart_community_sim/maps/field_gmapping.pgm",
+      "bytes": 640052,
+      "sha256": "d70b89505892a337782e6ba29ed701412ad4aec0946d75c73391dd7eab671150"
+    },
+    {
+      "path": "smart_community_sim/maps/field_gmapping.yaml",
+      "bytes": 122,
+      "sha256": "ba33847c4d888ed702ec8b2ca4150cec6df937c8a79160186aac8925159c1ff5"
+    },
+    {
+      "path": "smart_community_sim/maps/field_reference.pgm",
+      "bytes": 52915,
+      "sha256": "4ba462af41255f5dd43afd923b351c1df310bef934fccf9362ea0aff72c5d299"
+    },
+    {
+      "path": "smart_community_sim/maps/field_reference.yaml",
+      "bytes": 123,
+      "sha256": "3d90b4eb224a750fa1ba5bee54e358a7309b106f2acb5b62dcc94182d87e8c4c"
+    },
+    {
+      "path": "smart_community_sim/maps/navigation_preview.png",
+      "bytes": 2905,
+      "sha256": "2ee1d73d1589e180a7a1b108770ba63f6b00df01842e117513a62244d10aa3e4"
+    },
+    {
+      "path": "smart_community_sim/materials/scripts/smart_community.material",
+      "bytes": 5811,
+      "sha256": "3489883511fe805e4a5052677c4a2cbc4ce3c3e5e74521679876c7d7ac56eab2"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/a_street.png",
+      "bytes": 4552,
+      "sha256": "a5f2a35d99b3eb9e8f3d58d3ebe6939de2d3b98932ea2c5065bf45c587512f5d"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/b_street.png",
+      "bytes": 4452,
+      "sha256": "5f1a2a25d7b380bf7e64cdd8614d352713c645b1f1519593273f2b2454aa6d94"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/bin_0.png",
+      "bytes": 4839,
+      "sha256": "98559062c3eb7962acf11d425d95e5c3510383398d7785a48c75a5ac181e3ca5"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/bin_1.png",
+      "bytes": 4908,
+      "sha256": "d4b78d1e31a34be7d15c9f4ac278f1f4e6b785ee79bf75990ad8b055d6f0880e"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/bin_2.png",
+      "bytes": 5653,
+      "sha256": "6843a8369f1bcbe60d450faa4ccad072418b4c0600f626b160af344276868143"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/bin_3.png",
+      "bytes": 6455,
+      "sha256": "a55d6921fdce4f820b5cef62277e6d5f8fcfc4118f9fa7ab65be3db3c45b0e24"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/building_a.png",
+      "bytes": 5257,
+      "sha256": "7e29ff64685022c2a5c4adc30c2349944a3ddc27b7279c9ea4997e62f0080207"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/building_b.png",
+      "bytes": 5131,
+      "sha256": "3596498c3f78c42f11caaeb305747cc5007ef98be6879c02ce231b07fc7c57f5"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/building_c.png",
+      "bytes": 5323,
+      "sha256": "a4d7f49dcae2dee2280a3b0a6f3bfbe31f7076b9de5d5a3648ca67e7b80374ef"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/building_d.png",
+      "bytes": 5024,
+      "sha256": "0af4255ee2609007698950dce412cbdc582a6d521e620cdc4e629d53ed6eb628"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/car_background.png",
+      "bytes": 2899086,
+      "sha256": "867a0ea11f5df5eb87937c49164cd7ef75e0cafbfc527368900be8d8d6c43e38"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/direction.png",
+      "bytes": 4579,
+      "sha256": "80cd833c9bb5f3cbf6d93c02d365560a3e76b4bf8678b0107545b7f8809431db"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/facade_A.png",
+      "bytes": 6674,
+      "sha256": "88eae3699455678e8021f7f9b6c15df9d3004ba0c832aa4fa4c55ac05e4c1c26"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/facade_B.png",
+      "bytes": 6590,
+      "sha256": "902d8eacdad379bf5695541bf93f76f655ab317e94bb1e23a33747a7936f4bab"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/facade_C.png",
+      "bytes": 6715,
+      "sha256": "4b344d0dc3288e1340494b38a8f6a0b6457d6e5814a4da1c4615a4f5ad2c66cd"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/facade_D.png",
+      "bytes": 7966,
+      "sha256": "43c85a917e2309a661b3a98cf762c5da16fb644582164aeab4e54f9aa25c45d5"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/gauge_1.png",
+      "bytes": 12564,
+      "sha256": "38c9e6235468635aa8bf2109b8676e44f7443da3a07f86fc94c39c5e6dda25a2"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/gauge_2.png",
+      "bytes": 13889,
+      "sha256": "1eaaab125c6817b395ec759fec083224ed752881ec675b5d79270abbdc767227"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/no_straight.png",
+      "bytes": 6448,
+      "sha256": "46fa3fba13a0a3cce0e8c17a1414eb2347bf89afd5774fddf6f424e2215fbe65"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/parking.png",
+      "bytes": 7242,
+      "sha256": "c6595c860bd92129f2c9ca24d9d3a7ce36e9eb61dc6bd6895373ff7b24165caa"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_A_1.png",
+      "bytes": 3669,
+      "sha256": "6c850ec7cb45c5ef549fc896a54026abe4805c068f714b9fc0cc27c2d103d637"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_A_2.png",
+      "bytes": 3700,
+      "sha256": "8c3f400842fa3812121a87f8d55a415ad8c23345cd8d61cde503caf5ffb76fa9"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_A_3.png",
+      "bytes": 4552,
+      "sha256": "e5d35bd0251cb6ae33b53839ce51dad94b6d28f1c4328eb5125b1b38da1ebf98"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_A_4.png",
+      "bytes": 3600,
+      "sha256": "1822994dff32d54cdf8ec926b07fe7e89451fb135f6b84b43b26d225b74fe3d2"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_A_5.png",
+      "bytes": 3717,
+      "sha256": "0bbd44f70a2b87d84d214d9fe4d18955a5c48ac1ead00973edf1da63fbcaedff"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_B_1.png",
+      "bytes": 3669,
+      "sha256": "6c850ec7cb45c5ef549fc896a54026abe4805c068f714b9fc0cc27c2d103d637"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_B_2.png",
+      "bytes": 3700,
+      "sha256": "8c3f400842fa3812121a87f8d55a415ad8c23345cd8d61cde503caf5ffb76fa9"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_B_3.png",
+      "bytes": 4552,
+      "sha256": "e5d35bd0251cb6ae33b53839ce51dad94b6d28f1c4328eb5125b1b38da1ebf98"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_B_4.png",
+      "bytes": 3600,
+      "sha256": "1822994dff32d54cdf8ec926b07fe7e89451fb135f6b84b43b26d225b74fe3d2"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/person_B_5.png",
+      "bytes": 3717,
+      "sha256": "0bbd44f70a2b87d84d214d9fe4d18955a5c48ac1ead00973edf1da63fbcaedff"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/plate_1.png",
+      "bytes": 26595,
+      "sha256": "dc18502836447317ca7f6566d6dce008867b88a3b39393d896776cfdec4122de"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/plate_2.png",
+      "bytes": 26084,
+      "sha256": "29cf0ff4716ce62f57a8a279e015118d31769d3c77834bb65869172857ca3081"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/plate_3.png",
+      "bytes": 24029,
+      "sha256": "18824951d39b0e23a36a180a6b7ce8a64e578d3e4aa52d43ef30cfe046f68645"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/random_plate_1.png",
+      "bytes": 1163504,
+      "sha256": "cd2f241b7c9cf293668d8ff00d972e879f1039689bd39b5d6f1f81c10cee4c16"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/random_plate_2.png",
+      "bytes": 1133126,
+      "sha256": "d810bfb89b76f9f564253ad5b7e93945698f020ff9fc53709d29aa00dc5095b8"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_1.png",
+      "bytes": 70888,
+      "sha256": "3afdecda86664dbed90bd1e25f843967ed693dbfce6c80795d4e8772ccde8e82"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_10.png",
+      "bytes": 70553,
+      "sha256": "0bb34d312acbdceb095711ce0371386a75b1017c123fcade617b267e66ac3caf"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_11.png",
+      "bytes": 58967,
+      "sha256": "d84c0264c813d393ff724396b0f2a4a715cf3f1a7ff7dacb36b1f91d3ea40532"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_12.png",
+      "bytes": 58893,
+      "sha256": "c07ca4f14da60875a39194359a4fa21f95947236ac6e2ce4799418aa8b9d4de0"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_13.png",
+      "bytes": 55089,
+      "sha256": "29a644a75b8b598ecb135835ba257ea2fab3d7642797497516c5aec566402066"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_14.png",
+      "bytes": 61243,
+      "sha256": "c481bfe1f5cc357c079a9690a1175ff3f84c531c35375fcfd90369108d429db1"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_15.png",
+      "bytes": 52550,
+      "sha256": "c35273842b51f3397af0139754648d43a8fe5ac4dcb386761138cbe615b17f0a"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_16.png",
+      "bytes": 40814,
+      "sha256": "a5c15c87b2c3753e73fbda1f57f1e18ccc2b82c506afa5320fb617cbb1f16949"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_2.png",
+      "bytes": 61871,
+      "sha256": "f6661dc6507ad1fd3be4c105d0d1518d37255c1e7979376b555860feab8cba77"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_3.png",
+      "bytes": 63686,
+      "sha256": "1b21c0bec7fd5b03e191160b548f3d9f5a43b5325b50b9fbc0f87b455442276b"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_4.png",
+      "bytes": 70786,
+      "sha256": "ebbb01bfcf41a915ed731081a86600c96c044988079908b940aba421ec9cfdf6"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_5.png",
+      "bytes": 59149,
+      "sha256": "84e613f0e865f6bcd0c9cd0d8a81e8349c7d69720bdd04cba8f96466bd42cc92"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_6.png",
+      "bytes": 55977,
+      "sha256": "afff22efe970849e11ba3b41a9086a88a00dd9a6be7951e779af5841938c88c0"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_7.png",
+      "bytes": 60615,
+      "sha256": "b6b1b745215009aeb5186e7362f0d33e8810f6e315805fb630430e2fc24b884e"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_8.png",
+      "bytes": 57082,
+      "sha256": "1f72b111743db5d1251557254cb90a3953a6347249482b528cbc3b5bbc7bc33a"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/resident_9.png",
+      "bytes": 52059,
+      "sha256": "6238ac20a1ab3fa437c613708f5417388fba7bdbd18aa3db81fce8c2c0449e63"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/roof_A.png",
+      "bytes": 4174,
+      "sha256": "8d28f93b92f569145647c1e4b056d87c34615e1021c338fb8f10c6eb90b0b42e"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/roof_B.png",
+      "bytes": 4095,
+      "sha256": "674d50cfdfcd4eddfd5b7b339e10b2776dd6c2d35fda80904fe20bffd4eec3a3"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/roof_C.png",
+      "bytes": 4272,
+      "sha256": "896607c11ea4a85d76a7947a7dc809d72f36c79789f71a576d39fcffe73c8bd2"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/roof_D.png",
+      "bytes": 4028,
+      "sha256": "ca36d18e15404fca52f4238bc720de0f2de4506747dc3781e5a5f57260372e23"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/signal_green_off.png",
+      "bytes": 2030607,
+      "sha256": "46a30fc9dd2e56958de86526bd596e129a87f8e6aca9045d2c3af88a6caacb7a"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/signal_green_on.png",
+      "bytes": 2078760,
+      "sha256": "b44a69b7e96cf909d20c97803af736d1090bb6ecd3c8b0894d8a075d9e9f02cb"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/signal_red_off.png",
+      "bytes": 1841379,
+      "sha256": "b5b63a004143586dfa2387deddeebd9558ebc3bc8a43e39009747ba2c0ffdbd5"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/signal_red_on.png",
+      "bytes": 2060054,
+      "sha256": "ff8923876a6b945e13f828ddd0ade9cd472aa1c12e74316578d83a18c0ee4815"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/signal_yellow_off.png",
+      "bytes": 2166092,
+      "sha256": "011080177f1704b0bc4aba2bf12fc49e07aca72b650e9d31194683825e24865c"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/signal_yellow_on.png",
+      "bytes": 1915090,
+      "sha256": "b4465644cad9559f351b6fbae75eca294ef353df8899c55456e6af035cc93602"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/station.png",
+      "bytes": 3047,
+      "sha256": "5f8050e19d9d05427c26e2b692ff595a8727929e26be0ca71e4af311e62bd614"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/station_title.png",
+      "bytes": 4457,
+      "sha256": "a19038f8f9a4a5a25915595b65de6e7c7058800811e2570e4f392d9b968777d5"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/visitor_F1.png",
+      "bytes": 60315,
+      "sha256": "9028438959546fe7330ef4e8aff41b68cb1cfd7ab38bd05acd3e80aff9226483"
+    },
+    {
+      "path": "smart_community_sim/materials/textures/visitor_F2.png",
+      "bytes": 59930,
+      "sha256": "bdc6cc46cb52d8ac0979cf0b18f399965c62d833a1853958ed1f125f5d4e26a8"
+    },
+    {
+      "path": "smart_community_sim/meshes/mecanum_roller.dae",
+      "bytes": 11107,
+      "sha256": "88388965b0eaec45621ba06c96f42a67bfbd974e1e042af405d0f0833aa941a3"
+    },
+    {
+      "path": "smart_community_sim/meshes/sign.dae",
+      "bytes": 1207,
+      "sha256": "6ba7655a19196cb4d6387bbf2d4ca064140fbb5643da84b64d8fe223a8e5a0a4"
+    },
+    {
+      "path": "smart_community_sim/model/README.md",
+      "bytes": 1204,
+      "sha256": "7569d28e1d1eaaf9c784a1136b994a79ddf4dc16104f89858d8863fa454a8afa"
+    },
+    {
+      "path": "smart_community_sim/model/doll_best.onnx",
+      "bytes": 12266095,
+      "sha256": "62740e303aa7317872c190c9531b40986e104076f1b9e8e26823028e75ee4145"
+    },
+    {
+      "path": "smart_community_sim/model/plate_best.onnx",
+      "bytes": 12265292,
+      "sha256": "0edfbe19fb7305f6faa05fbea0d822c2cf985f20caf92a4f1ebdfbceb67f1c33"
+    },
+    {
+      "path": "smart_community_sim/model/traffic_light_best.onnx",
+      "bytes": 12265308,
+      "sha256": "820321ba1d18fc67d3516cfcde817ddea65ab83c65941cc4f1d0506fe49b654c"
+    },
+    {
+      "path": "smart_community_sim/preview/field_3d.png",
+      "bytes": 111185,
+      "sha256": "ea8b316c5d30ef5de1e79a95b6d7279454d43c9055bc59d2811ea87920161bc5"
+    },
+    {
+      "path": "smart_community_sim/preview/people.png",
+      "bytes": 379964,
+      "sha256": "23ae28a0b754af675b080e360875bb810f7a714d68fb4d5520b6fac440dee11c"
+    },
+    {
+      "path": "smart_community_sim/preview/plates.png",
+      "bytes": 295030,
+      "sha256": "39ab9e62251042b680eb32e4f80710556aed2dea973f0dcd8c0e8647c47fe414"
+    },
+    {
+      "path": "smart_community_sim/preview/signal.png",
+      "bytes": 186766,
+      "sha256": "b990c79a2402360a99e10b4d392d8e701f18b150bb464527d1780a402e0096c4"
+    },
+    {
+      "path": "smart_community_sim/rviz/navigation.rviz",
+      "bytes": 2531,
+      "sha256": "532c6ac7f98377389beb05523aaa5ffbf870a1b72ecb35b5d56edf50f713c288"
+    },
+    {
+      "path": "smart_community_sim/scripts/align_cartographer_map.py",
+      "bytes": 2536,
+      "sha256": "371b3a238153fd154653b620d6cbd367ca307e14fd0473061c92d8cadf9640d2"
+    },
+    {
+      "path": "smart_community_sim/scripts/compare_navigation.py",
+      "bytes": 7189,
+      "sha256": "0a6e0951ab2dcfc1c607c486749c43e793240cb7625b5ffbebd4df16ea1bceec"
+    },
+    {
+      "path": "smart_community_sim/scripts/generate_field.py",
+      "bytes": 20171,
+      "sha256": "7212acdad17f604e99717f8cbbd285dd414b590c22240886bc94ae32b9c11132"
+    },
+    {
+      "path": "smart_community_sim/scripts/generate_navigation_maps.py",
+      "bytes": 6760,
+      "sha256": "3396517c9bdb9ffe54c1f699b5cd27335dfd82ab1c9aac617c854ee8bf274d07"
+    },
+    {
+      "path": "smart_community_sim/scripts/keyboard_teleop.py",
+      "bytes": 1869,
+      "sha256": "7cd716f65e513745ea780169726c3c44aa77044ec6bd0e472e52e005e7f5acc0"
+    },
+    {
+      "path": "smart_community_sim/scripts/navigation_benchmark.py",
+      "bytes": 9526,
+      "sha256": "b50184599991150bfcf07c4097f32cf5c4ed4b91dbed457138948b3f5646d804"
+    },
+    {
+      "path": "smart_community_sim/scripts/patrol.py",
+      "bytes": 16500,
+      "sha256": "2af1485a51809efe8df67410cacbffd36fa9fbcc176dffefbda9792bda3f562a"
+    },
+    {
+      "path": "smart_community_sim/scripts/preview_field.py",
+      "bytes": 8170,
+      "sha256": "a40d67557b9729dcc0f033a8ba08fea11b6cce7b161324aa2de894d12b52b45d"
+    },
+    {
+      "path": "smart_community_sim/scripts/save_cartographer.py",
+      "bytes": 1635,
+      "sha256": "e69212dada4db51e0af369e34ceed8ff2c2d288a43d2ba9b51807abe38c88008"
+    },
+    {
+      "path": "smart_community_sim/scripts/start_cartographer_localization.py",
+      "bytes": 1975,
+      "sha256": "a6e69059ff84a8f4a8ed0d50d20548665747ee069281c70fa1b1c283ba8ba8ac"
+    },
+    {
+      "path": "smart_community_sim/scripts/verify_keyboard_drive.py",
+      "bytes": 9814,
+      "sha256": "1c557f3ba798738d54c3d2f7481b804196a62e56f636226d5a5658755580c40f"
+    },
+    {
+      "path": "smart_community_sim/scripts/vision_node.py",
+      "bytes": 13207,
+      "sha256": "855e256ad7f00f798256ee596f4f3a6a5af5607fdc09c00910c6ee1c96e3020f"
+    },
+    {
+      "path": "smart_community_sim/src/mecanum_drive_plugin.cpp",
+      "bytes": 10351,
+      "sha256": "290eaa4106ab35677375a0d393ae7b609397589218d85f9061aeecfc4be307ae"
+    },
+    {
+      "path": "smart_community_sim/src/signal_plugin.cpp",
+      "bytes": 2550,
+      "sha256": "9f881768cfb904c9afae55bd42bb4174626abb9515035e8b87e71ed83c9817bf"
+    },
+    {
+      "path": "smart_community_sim/src/wheel_drive.hpp",
+      "bytes": 2126,
+      "sha256": "29da25e11f6290df589aee253a5671317a3bd113e06cd81863255d2402c0f195"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/__init__.py",
+      "bytes": 58,
+      "sha256": "a271c7b63c6a0451b98848b7f123c110ae9e9b9f8b86998537de173528acd623"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/benchmark_metrics.py",
+      "bytes": 2292,
+      "sha256": "36d465666300187cced7222289afb011c684a4acb68882817b5729da7a32fcab"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/drive_metrics.py",
+      "bytes": 1856,
+      "sha256": "1dd71c5872371d0c5a047d1cdda9e7f63aa1dd3f6a5494c7cb931b5ac789adba"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/observation_report.py",
+      "bytes": 2983,
+      "sha256": "2f8977d29c056d1f3f059ab40ecfdbe8da99bf3ba3209cb59714fc37c6d6f59e"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/observation_tracker.py",
+      "bytes": 2737,
+      "sha256": "e4374434cb0fd16957665a50ad53069712c6e09d7897e0875a4f30371071689c"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/recognition_overlay.py",
+      "bytes": 1273,
+      "sha256": "75079aefc8b4961f5597409775d79841254e56379b39c1720f1a509ea1799ff9"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/run_results.py",
+      "bytes": 8085,
+      "sha256": "380277f163ce0712fdb45299e583e0b84cdf14f9fb9b4fb73f92b67ea958dc49"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/task_progress.py",
+      "bytes": 4751,
+      "sha256": "7fb0d2e755e17d03c806080434eac0abbf15d3f098c4983d83ec3bb2404fafda"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/terminal_log.py",
+      "bytes": 2075,
+      "sha256": "59f4bc2e3ff86ee893f024ff0a327d4426f3f5ea6b15a872919655250694eb8a"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/timing.py",
+      "bytes": 1013,
+      "sha256": "2d601d63aa1658b00563fb8d40b448d0a4aabd634e54fd10efccd649d7579296"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/traffic_guard.py",
+      "bytes": 1485,
+      "sha256": "9d10bb9d865f98012a6a9709e8deef2ceeeb3f5014ca6af4118fc43f1f8add26"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/vision_core.py",
+      "bytes": 6385,
+      "sha256": "8818546806d5263795d2b43914893259612c5fdec205a82dbfa135f36165367f"
+    },
+    {
+      "path": "smart_community_sim/src/smart_community_sim/yolo_ocr.py",
+      "bytes": 5961,
+      "sha256": "c263f88ff8d38cba92659d7dc2fcc9bb07d1c2db638d6f868daae12aa99ea902"
+    },
+    {
+      "path": "smart_community_sim/tests/check_contact_geometry.py",
+      "bytes": 2437,
+      "sha256": "db565b14259a541b44f210ae2f5a751c1839e04e1d74f983036ee3552bd02484"
+    },
+    {
+      "path": "smart_community_sim/tests/check_observation_geometry.py",
+      "bytes": 6490,
+      "sha256": "b699d652aac9cc743dbf9b04d6d7ff706d432dd8621ad6478dedbfba082d1dd9"
+    },
+    {
+      "path": "smart_community_sim/tests/test_algorithm_comparison.py",
+      "bytes": 5584,
+      "sha256": "2b2ebf22a446418dcc65b22f512af242362836398642801f8a68a825375fc000"
+    },
+    {
+      "path": "smart_community_sim/tests/test_benchmark_restart.py",
+      "bytes": 1703,
+      "sha256": "da093365d78a5dc75156099cc4a30878cb13cfa27e9ecd1f1fdc1c86216b647d"
+    },
+    {
+      "path": "smart_community_sim/tests/test_drive_metrics.py",
+      "bytes": 1970,
+      "sha256": "7e71ac03b8c803a2ca31dd0341e27516284d1e69362c2adc6622adcae6883818"
+    },
+    {
+      "path": "smart_community_sim/tests/test_navigation.py",
+      "bytes": 6246,
+      "sha256": "a53866f17ef5d17508a422152d2cb868fd1b7b18a3d3f8caa77287e5bf6bc532"
+    },
+    {
+      "path": "smart_community_sim/tests/test_observation_reports.py",
+      "bytes": 4393,
+      "sha256": "f06acabbb3e96535d153271fc3b10019d8c6c79f3ae7560d9211c24ae84b80e4"
+    },
+    {
+      "path": "smart_community_sim/tests/test_official_requirements.py",
+      "bytes": 7096,
+      "sha256": "38ddcc85847bbefee83d16a88985341ae1ba93390b402796b548f7b0e00500d7"
+    },
+    {
+      "path": "smart_community_sim/tests/test_run_results.py",
+      "bytes": 5957,
+      "sha256": "8d53b719cefd5c613659ff2a8ca317a0541fec77a7a24256bfc206ba75e086b9"
+    },
+    {
+      "path": "smart_community_sim/tests/test_verifier_startup.py",
+      "bytes": 1806,
+      "sha256": "daaff4179c6eaa920a12c524badd750baf65daad15907dde4b4af108797f6617"
+    },
+    {
+      "path": "smart_community_sim/tests/test_yolo_observations.py",
+      "bytes": 2282,
+      "sha256": "1edf6adab593189f554b2d200099d0aabd8d86e435e12d54400544f5e1c7abca"
+    },
+    {
+      "path": "smart_community_sim/tests/benchmark/amcl_core_benchmark.cpp",
+      "bytes": 4100,
+      "sha256": "43e2b97bbe7b30d2bf7fd00f17c8d27dcd7e0683314edd00ae111518f62684e3"
+    },
+    {
+      "path": "smart_community_sim/tests/benchmark/run_amcl_core.py",
+      "bytes": 7160,
+      "sha256": "07c947f7ae6b10b50d49085070d42b1f39bcf77e3b193421224178aff1882a2f"
+    },
+    {
+      "path": "smart_community_sim/tests/physics/export_ode_model.py",
+      "bytes": 3133,
+      "sha256": "3b0b5652a89fee1095bcb6ac37bd43b1cdd8a3b46f0f3c9e1431c7b9a073fd9c"
+    },
+    {
+      "path": "smart_community_sim/tests/physics/ode_drive_probe.cpp",
+      "bytes": 5761,
+      "sha256": "24afafc5afc23a86b8521482ef77693610a47c87e39d02bbe018cd3b17c1e63f"
+    },
+    {
+      "path": "smart_community_sim/tests/physics/wheel_drive_test.cpp",
+      "bytes": 1388,
+      "sha256": "8ba86372eb028d9fa62e1880ab954b8ebe5aa23e525408cad7caebe04f9df5ee"
+    },
+    {
+      "path": "smart_community_sim/urdf/community_mecanum.xacro",
+      "bytes": 9715,
+      "sha256": "2f27001b4c83d596d9f8beb730d0721abe7b8a922ef3e07ac1938587c8d88ab6"
+    },
+    {
+      "path": "smart_community_sim/worlds/drive_test.world",
+      "bytes": 2259,
+      "sha256": "4232584f0b6f338450a178a74a70d68eab92cf741b8e66beba50571382cb9ff6"
+    },
+    {
+      "path": "smart_community_sim/worlds/smart_community.world",
+      "bytes": 65039,
+      "sha256": "af8e023b28bde3967b05adc9493287610439dba3553e23553a1e178147f515a8"
+    },
+    {
+      "path": "jie_ware/.gitignore",
+      "bytes": 244,
+      "sha256": "134b983a28686a21dce2a574d6bea11a2511e0749d9d7b34fe7c363718c2b095"
+    },
+    {
+      "path": "jie_ware/CMakeLists.txt",
+      "bytes": 8323,
+      "sha256": "ccd98bab91239c1b5618eb39272b8add81b32807d3cff4780e0b08dd1f02a6eb"
+    },
+    {
+      "path": "jie_ware/LICENSE",
+      "bytes": 18092,
+      "sha256": "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+    },
+    {
+      "path": "jie_ware/README.md",
+      "bytes": 3657,
+      "sha256": "a063010eadf6ade97cb1c0b1dd9b9450e53e972429af8484588a839ad7d504e5"
+    },
+    {
+      "path": "jie_ware/package.xml",
+      "bytes": 3932,
+      "sha256": "5bc900faca85f46cbdd06ca2c8e4b85291d9392c22def94d8ef76aa93d2b7231"
+    },
+    {
+      "path": "jie_ware/launch/amcl_test.launch",
+      "bytes": 5429,
+      "sha256": "93fe38ea522dba1ec3cd38918c557207e5d646afa62cd73b3529576d852b249e"
+    },
+    {
+      "path": "jie_ware/launch/lidar_loc_test.launch",
+      "bytes": 5424,
+      "sha256": "0eeafc09a6e0207215c36b9d3a28af13c908c7e4905a0c4bec0585bddae39718"
+    },
+    {
+      "path": "jie_ware/src/costmap_cleaner.cpp",
+      "bytes": 1016,
+      "sha256": "679b83d38b07c0081c7e1a7e324211b9eb35f91c19053be4f4bd4ccb1e5d2d4f"
+    },
+    {
+      "path": "jie_ware/src/lidar_filter_node.cpp",
+      "bytes": 5472,
+      "sha256": "e8595f4b9fa2ae7200ecbb4f6689ab2a25f95dd7331f78b725a2e6a550d22900"
+    },
+    {
+      "path": "jie_ware/src/lidar_loc.cpp",
+      "bytes": 7774,
+      "sha256": "498bddb29866f1f031e8a67bf1c8aec4777b754268f7730ee080afd0bb3aa5b6"
+    },
+    {
+      "path": "my_local_planner/CMakeLists.txt",
+      "bytes": 801,
+      "sha256": "59a78baa72e29a599a6bec17c30124538dac1c250fe60bcc8fe3049100e7d3ce"
+    },
+    {
+      "path": "my_local_planner/README.md",
+      "bytes": 1246,
+      "sha256": "578687b0849399ef595e75b265a60fa518e89706eb1f74c488e3339fd72742e7"
+    },
+    {
+      "path": "my_local_planner/my_local_planner_plugin.xml",
+      "bytes": 245,
+      "sha256": "11013cc2ae819eb9c50d31d69932856906d3bdfc345f817bd038404ec4682d9b"
+    },
+    {
+      "path": "my_local_planner/package.xml",
+      "bytes": 664,
+      "sha256": "9a8cfc673d4795f349e7d8971e9391a12bfc0dabbb7e87dd967bd9cf52dd413d"
+    },
+    {
+      "path": "my_local_planner/include/my_local_planner.h",
+      "bytes": 1261,
+      "sha256": "3e495114693b213e37832f48e64c8b788b29033fe9f349d83f702211f77a94d8"
+    },
+    {
+      "path": "my_local_planner/src/my_planner.cpp",
+      "bytes": 6201,
+      "sha256": "15a96efa531c0ae4430bda8dc615ae70bf753291c02c56f7a67de591fc391b54"
+    },
+    {
+      "path": "tools/check_environment.py",
+      "bytes": 4543,
+      "sha256": "e000c2ba4519ce767e5e2007247e2b7244b4436dc0fce4aba089de005e5813bb"
+    },
+    {
+      "path": "tools/package_release.py",
+      "bytes": 4058,
+      "sha256": "0fe33361b7dd77bb2156a5d4e55bfb52e03ffcc97ad1252cb4ce4ca05b79873d"
+    },
+    {
+      "path": "tools/run.sh",
+      "bytes": 1510,
+      "sha256": "9358d190a67ba3b390ca67a9b0b44f35f03891ed99c2c7616b99d806bf5241d8"
+    },
+    {
+      "path": "tools/setup.sh",
+      "bytes": 3762,
+      "sha256": "d8bb861542a24bee43d1a3acc7f96d951e64adff2e506ce4fe63d6c73c7379b0"
+    },
+    {
+      "path": "tools/smoke_test.py",
+      "bytes": 3591,
+      "sha256": "9fae3f3003428ea969856124aa2091f9b2e1933d4a4766e7b6515ea7e0f69600"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "bytes": 5027,
+      "sha256": "01fb674551bdb84c15c47da9fbb021133e02d95ac72fa2a2b5e832946cc7874a"
+    },
+    {
+      "path": "docs/INSTALL.md",
+      "bytes": 6948,
+      "sha256": "505d689d5b2015639fd7aee6be50406923e1d6ca1970a8c98b88badd3482c31a"
+    },
+    {
+      "path": "docs/USAGE.md",
+      "bytes": 8440,
+      "sha256": "603e405fb7485d6d4cf86feb63b6153f20e67204e257b50163119b870ee38d2b"
+    },
+    {
+      "path": "doc/9.24场地修订与查看.md",
+      "bytes": 4088,
+      "sha256": "3d54cf7f637379da0c2af29828bce0333769f04a5ab1ceecb3e12ac683b06cf2"
+    },
+    {
+      "path": "doc/9.24详细规则核对.md",
+      "bytes": 5519,
+      "sha256": "77a7d30bf40c5ac260bffb7bc61e44665109075bb39672101d72445db35f5d49"
+    },
+    {
+      "path": "doc/GitHub发布学习记录.md",
+      "bytes": 12339,
+      "sha256": "b542bc996ab7a51c444022aceb9af5f0093c3945d1eef245a51d8f7a7d10350e"
+    },
+    {
+      "path": "doc/停车漂移实测与修订.md",
+      "bytes": 5003,
+      "sha256": "745eab709313edc17be08365be66c3bef8139b84731683b3202fe184b9eb10c3"
+    },
+    {
+      "path": "doc/场地与接触驱动修订说明.md",
+      "bytes": 2373,
+      "sha256": "dc228fea1f5c1518ab6a7b45e9ccaf0f4d5881c5f326b4f5522f8a4f3130cd27"
+    },
+    {
+      "path": "doc/复赛资料核对与修订.md",
+      "bytes": 8649,
+      "sha256": "a1dd8bc071402a9f35a60ff3db22e48a97d75900ff1a34b6cb32602c42dfe7e5"
+    },
+    {
+      "path": "doc/安装与发布.md",
+      "bytes": 954,
+      "sha256": "6442b1324e41bf522ecc4a21f7157f5f67da0037bf61fcb8ef3bace1bd1ea831"
+    },
+    {
+      "path": "doc/定位导航对比与修订.md",
+      "bytes": 11580,
+      "sha256": "4c9c1db45b1c6bc1fb594cd99021c7f15dcf83cf430e3f0882a9ea559805fab6"
+    },
+    {
+      "path": "doc/导航修复学习记录.md",
+      "bytes": 33552,
+      "sha256": "e12f562cf9abc490388c0ef24ea614df4057156bc10e42eb128ff8033479f7c3"
+    },
+    {
+      "path": "doc/导航验证与算法对比.md",
+      "bytes": 6120,
+      "sha256": "69049f7e50c7bc706c7f517dd1fec9c9e9cf5360b2b4014f2fcd99abf6c3df8d"
+    },
+    {
+      "path": "doc/工程问题研究笔记模板.md",
+      "bytes": 1642,
+      "sha256": "dc37a7d33526a850ee2011a5bf7742bae53fb0a776b34c4ff3f5efa47f573916"
+    },
+    {
+      "path": "doc/智慧社区复赛实施计划.md",
+      "bytes": 3502,
+      "sha256": "700ff5215dd2ec30c463c10f8773fc1ace005a48a6202029b32475a7b67d0242"
+    },
+    {
+      "path": "doc/视觉识别学习记录.md",
+      "bytes": 38582,
+      "sha256": "13866d5c5dd5fbaa25073a738dc62bdf88c7f21a335438a6f3e65c5fb997c1a1"
+    },
+    {
+      "path": "doc/视觉识别验证说明.md",
+      "bytes": 5452,
+      "sha256": "8733ad2eba96e07a352074fb65582240b47bfc93b77db7ce37a16dbd4347b42e"
+    },
+    {
+      "path": "doc/转向与里程计问题检查.md",
+      "bytes": 5809,
+      "sha256": "cf587a26f132214117ed9a6a83d5054cc7193b43d359c41e423737891ff77d65"
+    }
+  ]
+}

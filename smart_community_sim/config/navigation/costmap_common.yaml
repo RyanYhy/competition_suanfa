@@ -1,0 +1,38 @@
+robot_base_frame: base_footprint
+transform_tolerance: 0.35
+# Includes all four rollers, then adds 1 cm per side.
+footprint: [[0.19, 0.17], [0.19, -0.17], [-0.19, -0.17], [-0.19, 0.17]]
+footprint_padding: 0.01
+resolution: 0.02
+static_layer:
+  map_topic: /map
+  subscribe_to_updates: false
+  first_map_only: false
+  track_unknown_space: true
+  use_maximum: false
+keepout_layer:
+  map_topic: /competition_keepout
+  subscribe_to_updates: false
+  first_map_only: true
+  track_unknown_space: false
+  use_maximum: true
+obstacle_layer:
+  enabled: true
+  combination_method: 1
+  observation_sources: laser
+  laser:
+    topic: /scan
+    data_type: LaserScan
+    marking: true
+    clearing: true
+    obstacle_range: 6.0
+    raytrace_range: 8.0
+    min_obstacle_height: 0.0
+    max_obstacle_height: 0.5
+    inf_is_valid: true
+    expected_update_rate: 0.3
+    observation_persistence: 0.0
+inflation_layer:
+  enabled: true
+  inflation_radius: 0.26
+  cost_scaling_factor: 8.0

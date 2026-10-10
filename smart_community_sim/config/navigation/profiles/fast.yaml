@@ -1,0 +1,61 @@
+# Experimental speed profile; requires physical braking validation.
+base_global_planner: global_planner/GlobalPlanner
+base_local_planner: dwa_local_planner/DWAPlannerROS
+controller_frequency: 10.0
+planner_frequency: 1.0
+planner_patience: 5.0
+controller_patience: 10.0
+oscillation_timeout: 30.0
+oscillation_distance: 0.05
+# Do not blindly rotate or clear competition keepout boundaries on failure.
+recovery_behavior_enabled: false
+clearing_rotation_allowed: false
+shutdown_costmaps: false
+GlobalPlanner:
+  use_dijkstra: true
+  use_quadratic: true
+  use_grid_path: false
+  allow_unknown: false
+  default_tolerance: 0.03
+  lethal_cost: 253
+  neutral_cost: 50
+  cost_factor: 3.0
+  publish_potential: false
+DWAPlannerROS:
+  odom_topic: /odom
+  max_vel_x: 0.24
+  min_vel_x: -0.24
+  max_vel_y: 0.24
+  min_vel_y: -0.24
+  max_vel_trans: 0.24
+  min_vel_trans: 0.01
+  max_vel_theta: 0.6
+  min_vel_theta: 0.0
+  acc_lim_x: 0.30
+  acc_lim_y: 0.30
+  acc_lim_trans: 0.35
+  acc_lim_theta: 0.6
+  xy_goal_tolerance: 0.02
+  yaw_goal_tolerance: 0.06
+  latch_xy_goal_tolerance: false
+  trans_stopped_vel: 0.025
+  theta_stopped_vel: 0.05
+  sim_time: 1.5
+  sim_granularity: 0.02
+  angular_sim_granularity: 0.05
+  vx_samples: 9
+  vy_samples: 9
+  vtheta_samples: 17
+  path_distance_bias: 32.0
+  goal_distance_bias: 20.0
+  occdist_scale: 0.08
+  forward_point_distance: 0.0
+  twirling_scale: 100.0
+  stop_time_buffer: 0.3
+  scaling_speed: 0.18
+  max_scaling_factor: 0.0
+  oscillation_reset_dist: 0.05
+  oscillation_reset_angle: 0.2
+  prune_plan: true
+  publish_traj_pc: false
+  publish_cost_grid_pc: false

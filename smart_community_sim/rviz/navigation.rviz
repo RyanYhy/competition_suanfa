@@ -1,0 +1,106 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+  - Class: rviz/Tool Properties
+    Name: Tool Properties
+Visualization Manager:
+  Class: ""
+  Global Options:
+    Background Color: 45; 48; 52
+    Fixed Frame: map
+    Frame Rate: 20
+  Displays:
+    - Class: rviz/Grid
+      Name: Grid
+      Enabled: true
+      Cell Size: 0.5
+      Plane Cell Count: 20
+    - Class: rviz/Map
+      Name: Map
+      Enabled: true
+      Topic: /map
+      Alpha: 0.8
+      Draw Behind: true
+    - Class: rviz/Map
+      Name: Keepout zones
+      Enabled: false
+      Topic: /competition_keepout
+      Alpha: 0.5
+    - Class: rviz/Map
+      Name: Global costmap
+      Enabled: false
+      Topic: /move_base/global_costmap/costmap
+      Color Scheme: costmap
+      Alpha: 0.5
+    - Class: rviz/Map
+      Name: Local costmap
+      Enabled: true
+      Topic: /move_base/local_costmap/costmap
+      Color Scheme: costmap
+      Alpha: 0.45
+    - Class: rviz/LaserScan
+      Name: Laser
+      Enabled: true
+      Topic: /scan
+      Size (m): 0.018
+      Style: Points
+      Color Transformer: FlatColor
+      Color: 255; 50; 40
+    - Class: rviz/RobotModel
+      Name: Robot
+      Enabled: true
+      Robot Description: robot_description
+      Visual Enabled: true
+      Collision Enabled: false
+      Alpha: 1
+    - Class: rviz/Path
+      Name: Global plan
+      Enabled: true
+      Topic: /move_base/GlobalPlanner/plan
+      Color: 30; 220; 70
+      Line Style: Lines
+      Line Width: 0.02
+    - Class: rviz/Path
+      Name: Local plan
+      Enabled: true
+      Topic: /move_base/DWAPlannerROS/local_plan
+      Color: 255; 210; 0
+      Line Width: 0.015
+    - Class: rviz/Polygon
+      Name: Footprint
+      Enabled: true
+      Topic: /move_base/local_costmap/footprint
+      Color: 0; 255; 255
+    - Class: rviz/PoseWithCovariance
+      Name: AMCL pose
+      Enabled: true
+      Topic: /amcl_pose
+    - Class: rviz/Image
+      Name: Recognition
+      Enabled: true
+      Image Topic: /vision/annotated
+      Transport Hint: raw
+      Queue Size: 1
+    - Class: rviz/MarkerArray
+      Name: Patrol points
+      Enabled: true
+      Marker Topic: /patrol/markers
+  Tools:
+    - Class: rviz/Interact
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+  Views:
+    Current:
+      Class: rviz/TopDownOrtho
+      Name: Top view
+      Target Frame: map
+      Scale: 140
+      X: 0
+      Y: 0
+Window Geometry:
+  Width: 1200
+  Height: 850

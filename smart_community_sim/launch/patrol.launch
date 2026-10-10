@@ -1,0 +1,63 @@
+<launch>
+  <arg name="localization" default="lidar"/><arg name="planner" default="custom"/>
+  <arg name="profile" default="balanced"/><arg name="amcl_profile" default="baseline"/>
+  <arg name="state" default=""/><arg name="vision" default="true"/>
+  <arg name="anchor_x" default="1.65"/><arg name="anchor_y" default="1.75"/><arg name="anchor_yaw" default="3.14159"/>
+  <arg name="map" default="$(find smart_community_sim)/maps/field_reference.yaml"/>
+  <arg name="start_sim" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="camera_hfov" default="1.745329"/>
+  <arg name="rviz" default="false"/>
+  <arg name="autostart" default="true"/>
+  <arg name="diagnostics" default="false"/>
+  <arg name="save_debug" default="$(arg diagnostics)"/>
+  <arg name="node_output" default="log"/>
+  <arg name="vision_output" default="$(find smart_community_sim)/validation"/>
+  <arg name="debug_output" default="$(find smart_community_sim)/../doc/validation/识别调试结果"/>
+  <arg name="vision_config" default="$(find smart_community_sim)/config/vision.yaml"/>
+  <arg name="diagnostic_output" default="$(arg debug_output)/navigation"/>
+  <arg name="route" default="$(find smart_community_sim)/config/navigation/patrol_route.yaml"/>
+  <arg name="traffic_prefix" default="/vision/traffic_lights"/>
+  <arg name="use_keepout" default="true"/>
+  <arg name="keepout_map" default="$(find smart_community_sim)/maps/competition_keepout.yaml"/>
+  <arg name="x" default="1.65"/><arg name="y" default="1.75"/><arg name="yaw" default="3.14159"/>
+  <node if="$(arg vision)" pkg="smart_community_sim" type="vision_node.py" name="community_vision" output="$(arg node_output)" required="true">
+    <rosparam command="load" file="$(arg vision_config)"/>
+    <param name="output_dir" value="$(arg vision_output)"/>
+    <param name="save_debug" value="$(arg save_debug)"/>
+    <param name="debug_output_dir" value="$(arg debug_output)"/>
+  </node>
+  <include file="$(find smart_community_sim)/launch/navigation.launch">
+    <arg name="node_output" value="$(arg node_output)"/>
+    <arg name="localization" value="$(arg localization)"/><arg name="planner" value="$(arg planner)"/>
+    <arg name="profile" value="$(arg profile)"/><arg name="amcl_profile" value="$(arg amcl_profile)"/><arg name="state" value="$(arg state)"/>
+    <arg name="anchor_x" value="$(arg anchor_x)"/><arg name="anchor_y" value="$(arg anchor_y)"/><arg name="anchor_yaw" value="$(arg anchor_yaw)"/>
+    <arg name="cmd_vel_topic" value="/navigation/cmd_vel"/>
+    <arg name="map" value="$(arg map)"/>
+    <arg name="use_keepout" value="$(arg use_keepout)"/>
+    <arg name="keepout_map" value="$(arg keepout_map)"/>
+    <arg name="x" value="$(arg x)"/><arg name="y" value="$(arg y)"/><arg name="yaw" value="$(arg yaw)"/>
+    <arg name="start_sim" value="$(arg start_sim)"/>
+    <arg name="camera_hfov" value="$(arg camera_hfov)"/><arg name="gui" value="$(arg gui)"/><arg name="rviz" value="$(arg rviz)"/>
+  </include>
+  <node pkg="smart_community_sim" type="patrol.py" name="patrol" output="screen" required="true">
+    <env name="PYTHONUNBUFFERED" value="1"/>
+    <param name="output_dir" value="$(arg vision_output)"/>
+    <rosparam command="load" file="$(arg route)"/>
+    <param name="max_translation" value="$(eval 0.24 if arg('profile') == 'fast' else 0.18)"/>
+    <param name="max_rotation" value="$(eval 0.6 if arg('profile') == 'fast' else 0.5)"/>
+    <param name="require_vision" value="$(arg vision)"/>
+    <param name="autostart" value="$(arg autostart)"/>
+    <param name="traffic_prefix" value="$(arg traffic_prefix)"/>
+  </node>
+  <!-- Passive observer only. Its exit must not terminate normal patrol. -->
+  <node if="$(arg diagnostics)" pkg="smart_community_sim" type="navigation_benchmark.py" name="patrol_diagnostics" output="$(arg node_output)">
+    <param name="localization" value="$(arg localization)"/><param name="planner" value="$(arg planner)"/>
+    <param name="profile" value="$(arg profile)"/><param name="amcl_profile" value="$(arg amcl_profile)"/>
+    <param name="state_file" value="$(arg state)"/><param name="output_dir" value="$(arg diagnostic_output)"/>
+    <param name="map_file" value="$(arg map)"/><param name="keepout_map_file" value="$(arg keepout_map)"/>
+    <param name="wall_timeout" value="3600"/>
+    <param name="overwrite_report" value="true"/>
+    <param name="continuous" value="true"/>
+  </node>
+</launch>

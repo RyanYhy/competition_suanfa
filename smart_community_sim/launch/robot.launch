@@ -1,0 +1,24 @@
+<launch>
+  <arg name="gui" default="true"/>
+  <arg name="node_output" default="screen"/>
+  <arg name="world" default="$(find smart_community_sim)/worlds/smart_community.world"/>
+  <arg name="drive_test" default="false"/>
+  <arg name="camera_hfov" default="1.745329"/>
+  <arg name="motor_kp" default="0.04"/>
+  <arg name="motor_ki" default="0.08"/>
+  <param name="community_drive_test" type="bool" value="$(arg drive_test)"/>
+  <arg name="x" default="1.65"/>
+  <arg name="y" default="1.75"/>
+  <arg name="yaw" default="3.14159"/>
+  <include file="$(find smart_community_sim)/launch/field.launch">
+    <arg name="node_output" value="$(arg node_output)"/>
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="world" value="$(arg world)"/>
+  </include>
+
+  <param name="robot_description"
+         command="$(find xacro)/xacro $(find smart_community_sim)/urdf/community_mecanum.xacro odom_initial_x:=$(arg x) odom_initial_y:=$(arg y) odom_initial_yaw:=$(arg yaw) motor_kp:=$(arg motor_kp) motor_ki:=$(arg motor_ki) camera_hfov:=$(arg camera_hfov)"/>
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_community_mecanum"
+        args="-urdf -param robot_description -model community_mecanum -x $(arg x) -y $(arg y) -z 0.01 -Y $(arg yaw)"/>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+</launch>

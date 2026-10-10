@@ -1,0 +1,2185 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="smart_community">
+    <gravity>0 0 -9.81</gravity>
+    <physics name="contact_physics" type="ode">
+      <max_step_size>0.004</max_step_size>
+      <real_time_update_rate>250</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>800</iters>
+          <sor>1.0</sor>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>0.1</contact_max_correcting_vel>
+          <contact_surface_layer>0.0001</contact_surface_layer>
+        </constraints>
+      </ode>
+    </physics>
+    <light name="sun" type="directional">
+      <pose>0 0 8 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <direction>-0.3 0.2 -1</direction>
+    </light>
+    <scene>
+      <ambient>0.65 0.65 0.65 1</ambient>
+      <background>0.80 0.85 0.9 1</background>
+      <shadows>true</shadows>
+    </scene>
+    <gui>
+      <camera name="overview">
+        <pose>-4.8 5.6 6.4 0 0.72 -0.862</pose>
+      </camera>
+    </gui>
+    <model name="field_floor">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="body">
+        <visual name="ground">
+          <pose>0 0 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.2 4.2 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.015 0.015 0.015 1</ambient>
+            <diffuse>0.015 0.015 0.015 1</diffuse>
+          </material>
+        </visual>
+        <collision name="ground">
+          <pose>0 0 -0.05 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.2 4.2 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <sensor name="floor_contacts" type="contact">
+          <always_on>true</always_on>
+          <update_rate>50</update_rate>
+          <contact>
+            <collision>ground</collision>
+          </contact>
+          <plugin name="ground_contact_ros" filename="libgazebo_ros_bumper.so">
+            <bumperTopicName>/ground_contacts</bumperTopicName>
+            <frameName>world</frameName>
+          </plugin>
+        </sensor>
+      </link>
+    </model>
+    <model name="perimeter_walls">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="body">
+        <visual name="north">
+          <pose>0 2.1025 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.21 0.005 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="north">
+          <pose>0 2.1025 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.21 0.005 0.5</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="south">
+          <pose>0 -2.1025 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.21 0.005 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="south">
+          <pose>0 -2.1025 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.21 0.005 0.5</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="east">
+          <pose>2.1025 0 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 4.2 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="east">
+          <pose>2.1025 0 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 4.2 0.5</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="west">
+          <pose>-2.1025 0 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 4.2 0.5</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="west">
+          <pose>-2.1025 0 0.25 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 4.2 0.5</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+      </link>
+    </model>
+    <model name="painted_boundaries">
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+      <link name="body">
+        <visual name="island_0">
+          <pose>-0.35 1.2 0.001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.3 0.6 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.015 0.015 0.015 1</ambient>
+            <diffuse>0.015 0.015 0.015 1</diffuse>
+          </material>
+        </visual>
+        <visual name="island_1">
+          <pose>0.5 -0.3 0.001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 2.4 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.015 0.015 0.015 1</ambient>
+            <diffuse>0.015 0.015 0.015 1</diffuse>
+          </material>
+        </visual>
+        <visual name="island_2">
+          <pose>-0.95 -0.6 0.001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.1 1.8 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.015 0.015 0.015 1</ambient>
+            <diffuse>0.015 0.015 0.015 1</diffuse>
+          </material>
+        </visual>
+        <visual name="island_3">
+          <pose>1.75 -0.3 0.001 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.7 3.6 0.001</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.015 0.015 0.015 1</ambient>
+            <diffuse>0.015 0.015 0.015 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_0">
+          <pose>0 -2.1 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.2 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_1">
+          <pose>2.1 0 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>4.2 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_2">
+          <pose>0 2.1 0.005 0 0 3.14159</pose>
+          <geometry>
+            <box>
+              <size>4.2 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_3">
+          <pose>-2.1 0 0.005 0 0 -1.5708</pose>
+          <geometry>
+            <box>
+              <size>4.2 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_4">
+          <pose>-0.35 1.5 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>2.3 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_5">
+          <pose>-0.65 0.9 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.7 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_6">
+          <pose>-1.5 1.2 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_7">
+          <pose>0.8 0 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>3 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_8">
+          <pose>0.2 -0.3 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>2.4 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_9">
+          <pose>0.5 -1.5 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.6 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_10">
+          <pose>-0.95 -1.5 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.1 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_11">
+          <pose>-0.95 0.3 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.1 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_12">
+          <pose>-1.5 -0.6 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>1.8 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_13">
+          <pose>-0.4 -0.6 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>1.8 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_14">
+          <pose>1.4 0 0.005 0 0 1.5708</pose>
+          <geometry>
+            <box>
+              <size>4.2 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="edge_15">
+          <pose>-0.95 -0.55 0.005 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>1.1 0.014 0.005</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_0">
+          <pose>-0.02 1.545 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_0">
+          <pose>-0.355 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_1">
+          <pose>-0.02 1.624 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_1">
+          <pose>-0.276 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_2">
+          <pose>-0.02 1.703 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_2">
+          <pose>-0.197 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_3">
+          <pose>-0.02 1.782 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_3">
+          <pose>-0.118 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_4">
+          <pose>-0.02 1.861 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_4">
+          <pose>-0.039 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_5">
+          <pose>-0.02 1.94 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_5">
+          <pose>0.04 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_zebra_6">
+          <pose>-0.02 2.019 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.21 0.035 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_zebra_6">
+          <pose>0.119 -0.7 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.035 0.21 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="north_stop">
+          <pose>0.3 1.8 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.56 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="south_stop">
+          <pose>-0.1 -0.55 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.56 0.025 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="start_line">
+          <pose>1.38 1.8 0.008 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.56 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="bay_line_0">
+          <pose>1.75 -1.5 0.007 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.7 0.018 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="bay_line_1">
+          <pose>1.75 -0.9 0.007 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.7 0.018 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="bay_line_2">
+          <pose>1.75 -0.3 0.007 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.7 0.018 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <visual name="bay_line_3">
+          <pose>1.75 1.5 0.007 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.7 0.018 0.004</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="north_signal">
+      <static>true</static>
+      <pose>-0.47 1.8 0 0 0 0</pose>
+      <link name="body">
+        <visual name="left_post">
+          <pose>0 -0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.035 0.04 0.05 1</ambient>
+            <diffuse>0.035 0.04 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_post">
+          <pose>0 -0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="right_post">
+          <pose>0 0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.035 0.04 0.05 1</ambient>
+            <diffuse>0.035 0.04 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_post">
+          <pose>0 0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="housing">
+          <pose>0 0 0.41 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.59 0.14</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.035 0.04 0.05 1</ambient>
+            <diffuse>0.035 0.04 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="housing">
+          <pose>0 0 0.41 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.59 0.14</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="red">
+          <pose>0.025001 -0.22 0.41 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.12 0.12</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/signal_red_on</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="yellow">
+          <pose>0.025001 0 0.41 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.12 0.12</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/signal_yellow_off</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="green">
+          <pose>0.025001 0.22 0.41 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.12 0.12</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/signal_green_off</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <plugin name="signal_cycle" filename="libcommunity_signal.so">
+        <redSeconds>10</redSeconds>
+        <greenSeconds>15</greenSeconds>
+        <yellowSeconds>5</yellowSeconds>
+      </plugin>
+    </model>
+    <model name="south_signal">
+      <static>true</static>
+      <pose>-0.1 -1.43 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="left_post">
+          <pose>0 -0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.035 0.04 0.05 1</ambient>
+            <diffuse>0.035 0.04 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="left_post">
+          <pose>0 -0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="right_post">
+          <pose>0 0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.035 0.04 0.05 1</ambient>
+            <diffuse>0.035 0.04 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="right_post">
+          <pose>0 0.3075 0.24 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.025 0.025 0.48</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="housing">
+          <pose>0 0 0.41 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.59 0.14</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.035 0.04 0.05 1</ambient>
+            <diffuse>0.035 0.04 0.05 1</diffuse>
+          </material>
+        </visual>
+        <collision name="housing">
+          <pose>0 0 0.41 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.05 0.59 0.14</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="red">
+          <pose>0.025001 -0.22 0.41 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.12 0.12</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/signal_red_on</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="yellow">
+          <pose>0.025001 0 0.41 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.12 0.12</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/signal_yellow_off</name>
+            </script>
+          </material>
+        </visual>
+        <visual name="green">
+          <pose>0.025001 0.22 0.41 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.12 0.12</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/signal_green_off</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+      <plugin name="signal_cycle" filename="libcommunity_signal.so">
+        <redSeconds>10</redSeconds>
+        <greenSeconds>15</greenSeconds>
+        <yellowSeconds>5</yellowSeconds>
+      </plugin>
+    </model>
+    <model name="person_A_resident_1">
+      <static>true</static>
+      <pose>-1.36 1.17 0 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.113548</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_1</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_2">
+      <static>true</static>
+      <pose>-1.1 1.07 0 0 0 -1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.138372</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_2</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_visitor_F1">
+      <static>true</static>
+      <pose>-1 1.07 0 0 0 -1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.049726 0.15</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/visitor_F1</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_3">
+      <static>true</static>
+      <pose>-0.9 1.07 0 0 0 -1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.106832</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_3</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_4">
+      <static>true</static>
+      <pose>-0.85 1.32 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.106707</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_4</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_9">
+      <static>true</static>
+      <pose>-0.95 1.32 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.147917</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_9</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_10">
+      <static>true</static>
+      <pose>-0.75 1.32 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.124828</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_10</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_11">
+      <static>true</static>
+      <pose>-0.8 1.07 0 0 0 -1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.147934</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_11</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_A_resident_12">
+      <static>true</static>
+      <pose>-1.36 1.27 0 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.0490223 0.15</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_12</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_5">
+      <static>true</static>
+      <pose>-1.15 0.14 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.0475504 0.15</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_5</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_6">
+      <static>true</static>
+      <pose>-0.95 0.14 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.0459538 0.15</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_6</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_7">
+      <static>true</static>
+      <pose>-0.85 0.14 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.129528</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_7</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_visitor_F2">
+      <static>true</static>
+      <pose>-0.53 -0.08 0 0 0 0</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.116887</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/visitor_F2</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_8">
+      <static>true</static>
+      <pose>-0.53 -0.28 0 0 0 0</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.135714</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_8</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_13">
+      <static>true</static>
+      <pose>-1.05 0.14 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.140873</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_13</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_14">
+      <static>true</static>
+      <pose>-0.75 0.14 0 0 0 1.5708</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.137805</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_14</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_15">
+      <static>true</static>
+      <pose>-0.53 -0.18 0 0 0 0</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.05 0.140336</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_15</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="person_B_resident_16">
+      <static>true</static>
+      <pose>-0.53 -0.38 0 0 0 0</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0.075 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.005 0.05 0.15</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="portrait">
+          <pose>0.002501 0 0.075 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.0389908 0.15</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/resident_16</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="car_1">
+      <static>true</static>
+      <pose>1.77 -1.79 0 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="backing">
+          <pose>0 0 0.125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0005 0.345 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="backing">
+          <pose>0 0 0.125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0005 0.345 0.25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="car_image">
+          <pose>0.000251 0 0.125 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.345 0.25</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/car_background</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="license_plate_1">
+      <static>true</static>
+      <pose>1.76969 -1.79 0.125 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0001 0.095 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0001 0.095 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="number_plate">
+          <pose>5.1e-05 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.095 0.03</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/random_plate_1</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="car_2">
+      <static>true</static>
+      <pose>1.77 -1.19 0 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="backing">
+          <pose>0 0 0.125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0005 0.345 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="backing">
+          <pose>0 0 0.125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0005 0.345 0.25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="car_image">
+          <pose>0.000251 0 0.125 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.345 0.25</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/car_background</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="license_plate_2">
+      <static>true</static>
+      <pose>1.76969 -1.19 0.125 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0001 0.095 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0001 0.095 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="number_plate">
+          <pose>5.1e-05 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.095 0.03</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/random_plate_2</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="car_3">
+      <static>true</static>
+      <pose>1.77 -0.59 0 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="backing">
+          <pose>0 0 0.125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0005 0.345 0.25</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="backing">
+          <pose>0 0 0.125 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0005 0.345 0.25</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="car_image">
+          <pose>0.000251 0 0.125 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.345 0.25</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/car_background</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <model name="license_plate_3">
+      <static>true</static>
+      <pose>1.76969 -0.59 0.125 0 0 3.14159</pose>
+      <link name="body">
+        <visual name="standee">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0001 0.095 0.03</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.96 0.96 0.93 1</ambient>
+            <diffuse>0.96 0.96 0.93 1</diffuse>
+          </material>
+        </visual>
+        <collision name="standee">
+          <pose>0 0 0 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>0.0001 0.095 0.03</size>
+            </box>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>1.0</mu>
+                <mu2>1.0</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+        <visual name="number_plate">
+          <pose>5.1e-05 0 0 0 0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://smart_community_sim/meshes/sign.dae</uri>
+              <scale>1 0.095 0.03</scale>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://smart_community_sim/materials/scripts</uri>
+              <uri>model://smart_community_sim/materials/textures</uri>
+              <name>Community/plate_3</name>
+            </script>
+          </material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>
